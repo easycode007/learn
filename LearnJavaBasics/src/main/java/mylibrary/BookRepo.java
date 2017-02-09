@@ -7,13 +7,12 @@ import java.util.HashMap;
  */
 public class BookRepo {
     private HashMap<String, ArrayList<Book>> myBooks;
-    private static BookRepo instance;
 
     public BookRepo() {
         myBooks = new HashMap<>();
     }
 
-    public void addBook(Book book) {
+    public void add(Book book) {
         ArrayList<Book> currentBooks = myBooks.get(book.getType());
         if(currentBooks == null || currentBooks.isEmpty()) {
             currentBooks = new ArrayList<Book>();
@@ -24,11 +23,14 @@ public class BookRepo {
         myBooks.put(book.getType(), currentBooks);
     }
 
-    public boolean searchForBook(String name) {
-        return false;
-    }
-
-    public Book getBook(String name) {
+    public Book get(String name) {
+        for(String key: myBooks.keySet()) {
+            for(Book book: myBooks.get(key)) {
+                if(book.getName().equals(name)) {
+                    return book;
+                }
+            }
+        }
         return null;
     }
 
