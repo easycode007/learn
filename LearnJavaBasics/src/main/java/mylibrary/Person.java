@@ -6,6 +6,5 @@ package mylibrary;
 public interface Person {
     public String getName();
     public void printName();
-    public String getAddress();
-    public String getNumericId();
+    public int getId();
 }

@@ -8,17 +8,21 @@ import java.util.List;
  */
 public class LibraryCenter implements Center {
     private List<Client> clients;
-    private Librarian librarian;
     private BookRepo bookRepo;
 
-    public LibraryCenter(Librarian librarian, BookRepo bookRepo) {
+    public LibraryCenter( BookRepo bookRepo) {
         clients = new ArrayList<>();
         this.bookRepo = bookRepo;
     }
 
     @Override
     public void register(Client client) {
-        clients.add(client);
+        if(!clients.contains(client)) {
+            clients.add(client);
+            System.out.println("Registered successfully");
+        } else {
+            System.out.println("You are already register in our DB!!!");
+        }
     }
 
     @Override
@@ -28,9 +32,6 @@ public class LibraryCenter implements Center {
 
     @Override
     public boolean searchFor(Client p) {
-        if(clients.contains(p)) {
-            return true;
-        }
         return false;
     }
 }

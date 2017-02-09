@@ -9,14 +9,7 @@ public class BookRepo {
     private HashMap<String, ArrayList<Book>> myBooks;
     private static BookRepo instance;
 
-    public static synchronized BookRepo getRepo() {
-        if(instance == null) {
-            instance = new BookRepo();
-        }
-        return instance;
-    }
-
-    private BookRepo() {
+    public BookRepo() {
         myBooks = new HashMap<>();
     }
 
