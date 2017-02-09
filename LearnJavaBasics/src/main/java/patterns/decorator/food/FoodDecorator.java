@@ -1,0 +1,18 @@
+package patterns.decorator.food;
+
+/**
+ * Created by Razvan on 26.01.2017.
+ */
+public abstract class FoodDecorator implements Food {
+    private Food newFood;
+    public FoodDecorator(Food newFood)  {
+        this.newFood = newFood;
+    }
+    @Override
+    public String prepareFood(){
+        return newFood.prepareFood();
+    }
+    public double foodPrice(){
+        return newFood.foodPrice();
+    }
+}
