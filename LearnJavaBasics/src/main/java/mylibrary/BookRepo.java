@@ -31,12 +31,17 @@ public class BookRepo {
         myBooks.put(book.getType(), currentBooks);
     }
 
+    public boolean searchForBook(String name) {
+        return false;
+    }
+
     public void printBooks() {
         for(String key: myBooks.keySet()) {
             System.out.print(key + ": ");
             for(Book book: myBooks.get(key)) {
                 System.out.print(book);
             }
+            System.out.println("");
         }
     }
 }
