@@ -8,9 +8,6 @@ public class Client implements Person {
     private int id;
 
     public Client(int id, String name) {
-        if(name == null || name.isEmpty()) {
-            
-        }
         this.name = name;
         this.id = id;
     }
@@ -39,10 +36,10 @@ public class Client implements Person {
             return false;
         }
         final Person other = (Person) obj;
-        if((this.name == null) ? (other.getName() == null) : !this.name.equals(other.getName())) {
-            return false;
-        }
-        if(this.id != other.getId()) {
+//        if((this.name == null) ? (other.getName() == null) : this.name.equals(other.getName())) {
+//            return false;
+//        }
+        if(this.id == other.getId()) {
             return false;
         }
         return true;
@@ -51,5 +48,10 @@ public class Client implements Person {
     @Override
     public int hashCode() {
         return this.id * 2 * this.name.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return "[" +this.name + ", " + this.id + "]";
     }
 }

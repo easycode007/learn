@@ -7,31 +7,55 @@ import java.util.List;
  * Created by Razvan on 09.02.2017.
  */
 public class LibraryCenter implements Center {
-    private List<Client> clients;
+    private List<Client> clientsDB;
     private BookRepo bookRepo;
 
-    public LibraryCenter( BookRepo bookRepo) {
-        clients = new ArrayList<>();
+    public LibraryCenter(BookRepo bookRepo) {
+        clientsDB = new ArrayList<>();
         this.bookRepo = bookRepo;
     }
 
     @Override
     public void register(Client client) {
-        if(!clients.contains(client)) {
-            clients.add(client);
-            System.out.println("Registered successfully");
+        if(clientsDB.isEmpty()) {
+            clientsDB.add(client);
+            System.out.println("<" + client.getName() + "> with id <" + client.getId() +
+                    "> registered successfully!!!");
         } else {
-            System.out.println("You are already register in our DB!!!");
+            if(checkIfUserExists(client)) {
+                System.out.println("< " + client.getName() + "> with id <" + client.getId() +
+                        "> you are already register in our DB!!!");
+            } else {
+                clientsDB.add(client);
+                System.out.println("<" + client.getName() + "> with id <" + client.getId() +
+                        "> registered successfully!!!");
+            }
         }
+    }
+
+    private boolean checkIfUserExists(Client other) {
+        for(Client client: clientsDB) {
+            if(client.equals(other)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override
     public int getNumberOfClients() {
-        return clients.size();
+        return clientsDB.size();
+    }
+
+    @Override
+    public void printAllClients() {
+        for(Client client: clientsDB) {
+            System.out.println(client);
+        }
     }
 
     @Override
     public boolean searchFor(Client p) {
-        return false;
+        return checkIfUserExists(p);
     }
 }

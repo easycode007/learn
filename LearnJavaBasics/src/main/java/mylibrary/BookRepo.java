@@ -28,6 +28,10 @@ public class BookRepo {
         return false;
     }
 
+    public Book getBook(String name) {
+        return null;
+    }
+
     public void printBooks() {
         for(String key: myBooks.keySet()) {
             System.out.print(key + ": ");
