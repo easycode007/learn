@@ -6,11 +6,11 @@ import java.util.List;
 /**
  * Created by Razvan on 09.02.2017.
  */
-public class LibraryCenter implements Center {
+public class LibraryHR implements HR {
     private List<Client> clientsDB;
     private BookRepo bookRepo;
 
-    public LibraryCenter(BookRepo bookRepo) {
+    public LibraryHR(BookRepo bookRepo) {
         clientsDB = new ArrayList<>();
         this.bookRepo = bookRepo;
     }

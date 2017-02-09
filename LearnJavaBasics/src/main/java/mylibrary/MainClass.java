@@ -6,12 +6,12 @@ package mylibrary;
 public class MainClass {
     public static void main(String[] args) {
         BookRepo bookRepo = createDB();
-        LibraryCenter myLibrary = new LibraryCenter(bookRepo);
+        LibraryHR hr = new LibraryHR(bookRepo);
         Client eu = new Client(1, "Razvan chiar el");
         Client eu2 = new Client(2, "Razvan chiar el");
-        myLibrary.register(eu);
-        myLibrary.register(eu2);
-        myLibrary.printAllClients();
+        hr.register(eu);
+        hr.register(eu2);
+        hr.printAllClients();
 //        eu.printName();
     }
 
