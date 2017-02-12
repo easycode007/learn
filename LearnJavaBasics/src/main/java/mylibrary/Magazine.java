@@ -25,6 +25,6 @@ public class Magazine implements Book {
 
     @Override
     public String toString() {
-        return name + ", #" + nr;
+        return name + " #" + nr;
     }
 }

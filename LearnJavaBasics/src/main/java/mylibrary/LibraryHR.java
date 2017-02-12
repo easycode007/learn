@@ -8,11 +8,9 @@ import java.util.List;
  */
 public class LibraryHR implements HR {
     private List<Client> clientsDB;
-    private BookRepo bookRepo;
 
-    public LibraryHR(BookRepo bookRepo) {
+    public LibraryHR() {
         clientsDB = new ArrayList<>();
-        this.bookRepo = bookRepo;
     }
 
     @Override

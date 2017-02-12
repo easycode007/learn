@@ -2,6 +2,8 @@ package mylibrary;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+
 /**
  * Created by Razvan on 07.02.2017.
  */
@@ -34,13 +36,41 @@ public class BookRepo {
         return null;
     }
 
+    public List<Book> getAllBooks(String type) {
+        return myBooks.get(type);
+    }
+
+    public void printAllBooks(String type) {
+        List<Book> books = getAllBooks(type);
+        if(books == null || books.isEmpty()) {
+            System.out.println("There are no books in DB!!!");
+        } else {
+            for(Book b: books) {
+                System.out.println(b + ", ");
+            }
+        }
+    }
+
     public void printBooks() {
         for(String key: myBooks.keySet()) {
             System.out.print(key + ": ");
             for(Book book: myBooks.get(key)) {
-                System.out.print(book);
+                System.out.print(book + ", ");
             }
             System.out.println("");
         }
+    }
+
+    public static BookRepo getDefaultBooks() {
+        BookRepo bookRepo = new BookRepo();
+        Book book1 = new Literature("Amintiri din copilarie","Ion Creanga");
+        Book book2 = new Magazine("Click", 1);
+        Book book3 = new Literature("Steve Jobs", "Walter Isaacson");
+        Book book4 = new Magazine("Mirror", 41);
+        bookRepo.add(book1);
+        bookRepo.add(book2);
+        bookRepo.add(book3);
+        bookRepo.add(book4);
+        return bookRepo;
     }
 }
