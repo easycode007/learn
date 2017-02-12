@@ -39,6 +39,10 @@ public class InterfaceApplication {
         }
     }
 
+    public void loan(Client c, Book b) {
+        loan(c,b.getName());
+    }
+
     public void displayAllBooksFor(Client c) {
         List<Book> books = statistics.get(c);
         if(books == null || books.isEmpty()) {

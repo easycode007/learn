@@ -36,6 +36,17 @@ public class BookRepo {
         return null;
     }
 
+    public Book get(Book b) {
+        return get(b.getName());
+    }
+
+    public boolean checkIfBookExists(Book b) {
+        if(checkIfBookExists(b.getName())) {
+            return true;
+        }
+        return false;
+    }
+
     public boolean checkIfBookExists(String name) {
         if(get(name) == null) {
             return false;

@@ -14,6 +14,7 @@ public class MainClass {
         myApp.displayAllBooksFor(c1);
         myApp.register(c2);
         myApp.loan(c2, "Mirror");
+        myApp.loan(c2, new Magazine("Times", 2));
         myApp.displayAllBooksFor(c2);
     }
 }
