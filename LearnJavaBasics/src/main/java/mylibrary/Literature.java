@@ -15,7 +15,7 @@ public class Literature implements Book {
 
     @Override
     public String getName() {
-        return null;
+        return name;
     }
 
     @Override

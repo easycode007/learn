@@ -36,6 +36,13 @@ public class BookRepo {
         return null;
     }
 
+    public boolean checkIfBookExists(String name) {
+        if(get(name) == null) {
+            return false;
+        }
+        return true;
+    }
+
     public List<Book> getAllBooks(String type) {
         return myBooks.get(type);
     }

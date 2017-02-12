@@ -21,7 +21,7 @@ public class LibraryHR implements HR {
                     "> registered successfully!!!");
         } else {
             if(checkIfUserExists(client)) {
-                System.out.println("< " + client.getName() + "> with id <" + client.getId() +
+                System.out.println("<" + client.getName() + "> with id <" + client.getId() +
                         "> you are already register in our DB!!!");
             } else {
                 clientsDB.add(client);
@@ -31,7 +31,7 @@ public class LibraryHR implements HR {
         }
     }
 
-    private boolean checkIfUserExists(Client other) {
+    public boolean checkIfUserExists(Client other) {
         for(Client client: clientsDB) {
             if(client.equals(other)) {
                 return false;
