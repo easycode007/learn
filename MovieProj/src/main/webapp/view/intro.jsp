@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Hello</title>
+    <title>INDEX PAGE</title>
 </head>
 <body>
-    <h1> Hello ${name} </h1>
+    <h1> INDEX PAGE </h1>
+    <h2> ${myName}  </h2>
 </body>
 </html>
