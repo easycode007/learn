@@ -5,6 +5,6 @@
     <title>Hello</title>
 </head>
 <body>
-    <h1> Success adding movie ${name} ${genre} ${releaseDate} ${description}</h1>
+    <h1> Success adding movie ${name} ${genre}</h1>
 </body>
 </html>
