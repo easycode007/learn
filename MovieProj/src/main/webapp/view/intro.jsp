@@ -6,6 +6,6 @@
 </head>
 <body>
     <h1> INDEX PAGE </h1>
-    <h2> ${myName}  </h2>
+    <h2> Hello ${myName}  </h2>
 </body>
 </html>

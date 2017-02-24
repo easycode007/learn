@@ -1,5 +1,8 @@
 package com.example.controller;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +19,17 @@ public class HelloController {
 	
 	@RequestMapping("/")
 	public String firstPage(Model model) {
-		model.addAttribute("myName", "RAZVAN");
+		InetAddress addr;
+		String hostName = "UNDEFINED";
+	    try {
+			addr = InetAddress.getLocalHost();
+			hostName = addr.getHostName();
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    
+		model.addAttribute("myName", hostName);
 		return "intro";
 	}
 }
