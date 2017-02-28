@@ -1,22 +1,12 @@
 package com.mov.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
-//import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.mov.model.Movie;
 import com.mov.model.MovieDao;
 
@@ -26,8 +16,8 @@ public class MovieController {
 	private MovieDao movieDao;
 	
 	
-	@RequestMapping(value="/movie", method = RequestMethod.POST)
-//	@ResponseBody
+	/// comentat RequestMethod.POST pentru a putea face debug in browser
+	@RequestMapping(value="/movie"/*, method = RequestMethod.POST*/)
 	public String addMovie(Model m, String name, String genre) {
 		try {
 //			Movie movie = new Movie(name, genre, releaseDate, description);
@@ -37,15 +27,8 @@ public class MovieController {
 			m.addAttribute("error", e.toString());
 			return "error";
 		}
-//		Map<String, Object> attributes = new HashMap<>();
-//		attributes.put("name", name);
-//		attributes.put("genre", genre);
-//		attributes.put("releaseDate", releaseDate);
-//		attributes.put("description", description);
 		m.addAttribute("name", name);
 		m.addAttribute("genre", genre);
-//		m.addAttribute("releaseDate", releaseDate);
-//		m.addAttribute("description", description);
 		return "success";
 	}
 	
@@ -55,11 +38,15 @@ public class MovieController {
 		return movies;
 	}
 	
-	@RequestMapping(value = "/movie/{id}", method = RequestMethod.GET)
-	public @ResponseBody String getMovie(Model model, @PathVariable("id") String id) {
-		Movie movie = movieDao.findOne(Long.getLong(id));
-		model.addAttribute(movie.getName());
-		model.addAttribute(movie.getGenre());
+	// comentat RequestMethod.GET pentru a putea face debug in browser
+	@RequestMapping(value = "/movie/{id}"/*, method = RequestMethod.GET*/) 
+	public String getMovie(Model model, @PathVariable("id") long id) {
+		Movie movie = movieDao.findOne(id);
+		String movieName = movie.getName();
+		String movieGenre = movie.getGenre();
+		System.out.println("----> " + movieName + " : " + movieGenre);
+		model.addAttribute("name", movieName);
+		model.addAttribute("genre", movieGenre);
 		return "movie";
 	}
 }

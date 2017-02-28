@@ -5,7 +5,8 @@
     <title>Hello</title>
 </head>
 <body>
-    <h1> Movie:</h1>
+    <h1> Movie: </h1>
+    
     <table>
     	<tr>
     		<td> NAME </td>
