@@ -1,4 +1,4 @@
-package com.example.config;
+package com.mov.config;
 
 import java.io.IOException;
 import java.util.Properties;

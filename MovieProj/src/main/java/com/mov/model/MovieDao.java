@@ -1,4 +1,4 @@
-package com.example.model;
+package com.mov.model;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;

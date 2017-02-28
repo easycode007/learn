@@ -1,4 +1,4 @@
-package com.example.controller;
+package com.mov.controller;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
