@@ -9,8 +9,8 @@
 		<h1> INDEX PAGE </h1>
     	<h2> Hello ${myName}  </h2>
 		<ul>
-			<li>  <a href="${pageContext.request.contextPath}/intro"> INTRO </a></li>
-			<li> <a href="${pageContext.request.contextPath}/home"> HOME </a> </li>
+			<li>  <a href="/intro"> INTRO </a></li>
+			<li> <a href="/home"> HOME </a> </li>
 			<li>  </li>
 			<li> </li>
 		</ul>

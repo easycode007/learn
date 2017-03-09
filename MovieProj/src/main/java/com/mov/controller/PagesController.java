@@ -15,4 +15,9 @@ public class PagesController {
 	public String homePage() {
 		return "home";
 	}
+	
+	@RequestMapping(value="/add")
+	public String addMovies() {
+		return "addMovie";
+	}
 }
