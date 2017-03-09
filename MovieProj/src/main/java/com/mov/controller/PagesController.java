@@ -6,17 +6,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class PagesController {
 
-	@RequestMapping(value="/intro")
+//	@RequestMapping(value="/intro")
 	public String introPage() {
 		return "intro";		
 	}
 	
-	@RequestMapping(value="/home")
+//	@RequestMapping(value="/home")
 	public String homePage() {
 		return "home";
 	}
 	
-	@RequestMapping(value="/add")
+//	@RequestMapping(value="/add")
 	public String addMovies() {
 		return "addMovie";
 	}
