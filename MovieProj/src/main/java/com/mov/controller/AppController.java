@@ -16,25 +16,30 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping(value="/")
 public class AppController {
 	
-//	@RequestMapping("/")
-//	public String firstPage(Model model) {
-//		InetAddress addr;
-//		String hostName = "UNDEFINED";
-//	    try {
-//			addr = InetAddress.getLocalHost();
-//			hostName = addr.getHostName();
-//		} catch (UnknownHostException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//	    
-//		model.addAttribute("myName", hostName);
-//		return "intro";
-//	}
+	@RequestMapping("/hello")
+	public String firstPage(Model model) {
+		InetAddress addr;
+		String hostName = "UNDEFINED";
+	    try {
+			addr = InetAddress.getLocalHost();
+			hostName = addr.getHostName();
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    
+		model.addAttribute("myName", hostName);
+		return "intro";
+	}
 	
 	@RequestMapping(value="/")
 	public String home(Model model) {
 		return "home";
+	}
+	
+	@RequestMapping("/contactus")
+	public String contactUS() {
+		return "contactus";
 	}
 
 }
