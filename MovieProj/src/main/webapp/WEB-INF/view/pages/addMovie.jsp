@@ -1,5 +1,5 @@
 <form:form method="POST" action="/movie"
-	modelAttribute="employee">
+	modelAttribute="movies">
 	<table>
 		<tr>
 			<td><form:label path="name">Name</form:label></td>
