@@ -3,11 +3,9 @@ package com.mov.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
+import org.springframework.web.servlet.view.UrlBasedViewResolver;
 import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
+import org.springframework.web.servlet.view.tiles3.TilesView;
 
 @Configuration
 @ComponentScan(basePackages = "com.mov")
@@ -21,18 +19,25 @@ public class ConfigurationForTiles {
 		return configurer;
 	}
 	
-	 /**
-     * Configure ViewResolvers to deliver preferred views.
-     */
-    public void configureViewResolvers(ViewResolverRegistry registry) {
-        TilesViewResolver viewResolver = new TilesViewResolver();
-        registry.viewResolver(viewResolver);
+//	 /**
+//     * Configure ViewResolvers to deliver preferred views.
+//     */
+//    public void configureViewResolvers(ViewResolverRegistry registry) {
+//        TilesViewResolver viewResolver = new TilesViewResolver();
+//        registry.viewResolver(viewResolver);
+//    }
+	
+	@Bean
+    public UrlBasedViewResolver tilesViewResolver() {
+        UrlBasedViewResolver tilesViewResolver = new UrlBasedViewResolver();
+        tilesViewResolver.setViewClass(TilesView.class);
+        return tilesViewResolver;
     }
      
-    /**
-     * Configure ResourceHandlers to serve static resources like CSS/ Javascript etc...
-     */     
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/static/**").addResourceLocations("/static/");
-    }
+//    /**
+//     * Configure ResourceHandlers to serve static resources like CSS/ Javascript etc...
+//     */     
+//    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+//        registry.addResourceHandler("/static/**").addResourceLocations("/static/");
+//    }
 }
