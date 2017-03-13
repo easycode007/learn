@@ -18,26 +18,11 @@ public class ConfigurationForTiles {
 		configurer.setCheckRefresh(true);
 		return configurer;
 	}
-	
-//	 /**
-//     * Configure ViewResolvers to deliver preferred views.
-//     */
-//    public void configureViewResolvers(ViewResolverRegistry registry) {
-//        TilesViewResolver viewResolver = new TilesViewResolver();
-//        registry.viewResolver(viewResolver);
-//    }
-	
+
 	@Bean
     public UrlBasedViewResolver tilesViewResolver() {
         UrlBasedViewResolver tilesViewResolver = new UrlBasedViewResolver();
         tilesViewResolver.setViewClass(TilesView.class);
         return tilesViewResolver;
     }
-     
-//    /**
-//     * Configure ResourceHandlers to serve static resources like CSS/ Javascript etc...
-//     */     
-//    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-//        registry.addResourceHandler("/static/**").addResourceLocations("/static/");
-//    }
 }

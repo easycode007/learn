@@ -19,10 +19,16 @@
 	</definition>
 
 
-	<!-- Product Page -->
-	<definition name="products" extends="base-definition">
-		<put-attribute name="title" value="Movies" />
+	<!-- Movie Page -->
+	<definition name="movies" extends="base-definition">
+		<put-attribute name="title" value="Movie Form" />
 		<put-attribute name="body" value="/WEB-INF/view/pages/movieForm.jsp" />
+	</definition>
+
+	<!-- Movie View results -->
+	<definition name="movieview" extends="base-definition">
+		<put-attribute name="title" value="Movie View" />
+		<put-attribute name="body" value="/WEB-INF/view/pages/movieView.jsp" />
 	</definition>
 
 	<!-- Contact-us Page -->
