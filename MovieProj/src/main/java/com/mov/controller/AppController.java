@@ -13,11 +13,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
-@RequestMapping(value="/")
 public class AppController {
-	
-	@RequestMapping("/hello")
-	public String firstPage(Model model) {
+
+	@RequestMapping(value="/")
+	public String home(Model model) {
 		InetAddress addr;
 		String hostName = "UNDEFINED";
 	    try {
@@ -27,19 +26,12 @@ public class AppController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	    
-		model.addAttribute("myName", hostName);
-		return "intro";
-	}
-	
-	@RequestMapping(value="/")
-	public String home(Model model) {
+		model.addAttribute("name", hostName);
 		return "home";
 	}
 	
-	@RequestMapping("/contactus")
+	@RequestMapping(value="/contactus")
 	public String contactUS() {
 		return "contactus";
 	}
-
 }

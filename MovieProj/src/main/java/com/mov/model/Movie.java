@@ -15,25 +15,12 @@ public class Movie {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-//	  
 	  
 	@NotNull
 	private String name;
 	@NotNull
 	private String genre;
-//	@Getter
-//	@Setter
-//	private String releaseDate;
-//	@Getter
-//	@Setter
-//	private String shortDescription;
-	
-//	public Movie(String name, String genre, String releaseDate, String shortDescription) {
-//		this.name = name;
-//		this.genre = genre;
-//		this.releaseDate = releaseDate;
-//		this.shortDescription = shortDescription;
-//	}
+
 	public Movie() { }
 	
 	public Movie(long id) {
