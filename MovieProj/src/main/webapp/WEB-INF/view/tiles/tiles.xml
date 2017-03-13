@@ -20,15 +20,15 @@
 
 
 	<!-- Movie Page -->
-	<definition name="movies" extends="base-definition">
+	<definition name="movie" extends="base-definition">
 		<put-attribute name="title" value="Movie Form" />
 		<put-attribute name="body" value="/WEB-INF/view/pages/movieForm.jsp" />
 	</definition>
 
 	<!-- Movie View results -->
-	<definition name="movieview" extends="base-definition">
-		<put-attribute name="title" value="Movie View" />
-		<put-attribute name="body" value="/WEB-INF/view/pages/movieView.jsp" />
+	<definition name="list" extends="base-definition">
+		<put-attribute name="title" value="Movies" />
+		<put-attribute name="body" value="/WEB-INF/view/pages/showMovies.jsp" />
 	</definition>
 
 	<!-- Contact-us Page -->
