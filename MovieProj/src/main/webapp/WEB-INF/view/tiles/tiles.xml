@@ -21,8 +21,8 @@
 
 	<!-- Product Page -->
 	<definition name="products" extends="base-definition">
-		<put-attribute name="title" value="Products" />
-		<put-attribute name="body" value="/WEB-INF/view/pages/addMovie.jsp" />
+		<put-attribute name="title" value="Movies" />
+		<put-attribute name="body" value="/WEB-INF/view/pages/movieForm.jsp" />
 	</definition>
 
 	<!-- Contact-us Page -->

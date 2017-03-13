@@ -26,21 +26,28 @@ public class MovieController {
 	@Autowired
 	private MovieDao movieDao;
 	
-	@RequestMapping(value = "/addMovie"/*, method = RequestMethod.GET*/)
+	@RequestMapping(value="/movie", method = RequestMethod.GET)
 	public ModelAndView showForm() {
 		log.info("I am in showForm() method!!!");
-		return new ModelAndView("addMovie", "movies", new Movie());
+		return new ModelAndView("movieForm", "movie", new Movie());
 	}
 	
 	@RequestMapping(value = "/addMovie", method = RequestMethod.POST)
-	public String submit(@Valid @ModelAttribute("addMovie")Movie movie, BindingResult result, ModelMap model) {
+	public String submit(@Valid @ModelAttribute("movieModel")Movie movie, BindingResult result, Model model) {
 		log.info("I am in the submit form");
 		if(result.hasErrors()) {
 			return "error";
 		}
+		try {
+			movieDao.save(movie);
+		} catch (Exception e) {
+			model.addAttribute("error", e.toString());
+			log.info("Error when I try to add data into db:  " + e.toString());
+			return "error";
+		}
 		model.addAttribute("name", movie.getName());
 		model.addAttribute("genre", movie.getGenre());
-		return "sucess";
+		return "movieView";
 	}
 	
 //	/// comentat RequestMethod.POST pentru a putea face debug in browser
