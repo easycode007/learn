@@ -2,19 +2,19 @@ package com.mov.controller;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import com.mov.model.Movie;
 
 
 @Controller
 public class AppController {
+	private Log log  = LogFactory.getLog(this.getClass());
 
 	@RequestMapping(value="/")
 	public String home(Model model) {
@@ -29,6 +29,12 @@ public class AppController {
 		}
 		model.addAttribute("name", hostName);
 		return "home";
+	}
+	
+	@RequestMapping(value="/movie", method = RequestMethod.GET)
+	public ModelAndView showForm() {
+		log.info("I am in showForm() method!!!");
+		return new ModelAndView("movieForm", "movie", new Movie());
 	}
 	
 	@RequestMapping(value="/contactus", method = RequestMethod.GET)
