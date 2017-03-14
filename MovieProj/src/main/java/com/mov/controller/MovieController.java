@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.mov.model.Movie;
 import com.mov.model.MovieDao;
@@ -24,23 +25,31 @@ public class MovieController {
 	@Autowired
 	private MovieDao movieDao;
 	
-	@RequestMapping(value = "/addMovie", method = RequestMethod.POST)
-	public String submit(@Valid @ModelAttribute("movieModel")Movie movie, BindingResult result, Model model) {
+	@RequestMapping(value = "/movie", method = RequestMethod.POST)
+	public ModelAndView submit(@Valid @ModelAttribute("movie")Movie movie, BindingResult result, Model model) {
 		log.info("I am in the submit form");
 		if(result.hasErrors()) {
-			return "error";
+			model.addAttribute("msg", result.getAllErrors().toString());
+			return new ModelAndView("error");
 		}
 		try {
 			movieDao.save(movie);
 		} catch (Exception e) {
 			model.addAttribute("error", e.toString());
 			log.info("Error when I try to add data into db:  " + e.toString());
-			return "error";
+			return new ModelAndView("error");
 		}
 		model.addAttribute("name", movie.getName());
 		model.addAttribute("genre", movie.getGenre());
-		return "movieView";
+		return new ModelAndView("movieView");
 	}
+	
+	@RequestMapping(value="/movie", method = RequestMethod.GET)
+	public ModelAndView showForm() {
+		log.info("I am in showForm() method!!!");
+		return new ModelAndView("movie", "movie", new Movie()); // view | model | obiectul din model
+	}
+	
 	
 //	/// comentat RequestMethod.POST pentru a putea face debug in browser
 //	@RequestMapping(value="/movie", method = RequestMethod.POST)
@@ -65,13 +74,13 @@ public class MovieController {
 	
 	// comentat RequestMethod.GET pentru a putea face debug in browser
 	@RequestMapping(value = "/movie/{id}"/*, method = RequestMethod.GET*/) 
-	public String getMovie(Model model, @PathVariable("id") long id) {
+	public ModelAndView getMovie(Model model, @PathVariable("id") long id) {
 		Movie movie = movieDao.findOne(id);
 		String movieName = movie.getName();
 		String movieGenre = movie.getGenre();
 		System.out.println("----> " + movieName + " : " + movieGenre);
 		model.addAttribute("name", movieName);
 		model.addAttribute("genre", movieGenre);
-		return "movie";
+		return new ModelAndView("movie");
 	}
 }

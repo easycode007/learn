@@ -18,7 +18,6 @@
 		<put-attribute name="body" value="/WEB-INF/view/pages/home.jsp" />
 	</definition>
 
-
 	<!-- Movie Page -->
 	<definition name="movie" extends="base-definition">
 		<put-attribute name="title" value="Movie Form" />
@@ -35,6 +34,12 @@
 	<definition name="contactus" extends="base-definition">
 		<put-attribute name="title" value="Contact Us" />
 		<put-attribute name="body" value="/WEB-INF/view/pages/contactus.jsp" />
+	</definition>
+	
+	<!-- Error Page -->
+	<definition name="error" extends="base-definition">
+		<put-attribute name="title" value="Error page" />
+		<put-attribute name="body" value="/WEB-INF/view/pages/error.jsp" />
 	</definition>
 
 </tiles-definitions>

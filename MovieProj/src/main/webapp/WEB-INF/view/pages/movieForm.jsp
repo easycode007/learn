@@ -1,6 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<form:form method="POST" action="/addMovie" modelAttribute="movie">
+<form:form method="POST" action="/movie" modelAttribute="movie">
 	<table>
 		<tr>
 			<td><form:label path="name">Name</form:label></td>

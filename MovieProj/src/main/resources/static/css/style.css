@@ -7,7 +7,6 @@ body{
 	background-color:rgb(245, 245, 245);
 }
 
-
 #header {
     margin-left:20%;
     top: 0px;
@@ -41,7 +40,6 @@ body{
 	padding-top:20px;   
     text-align:center;
 }
-
 
 #sidemenu {
     width: 20%;
@@ -85,7 +83,7 @@ body{
     border-left: 5px solid hsl(180,70%,55%);
 }
 
-.logo{
+.logo {
 	float:left;
 }
 
