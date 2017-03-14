@@ -25,9 +25,9 @@
 	</definition>
 
 	<!-- Movie View results -->
-	<definition name="list" extends="base-definition">
+	<definition name="movies" extends="base-definition">
 		<put-attribute name="title" value="Movies" />
-		<put-attribute name="body" value="/WEB-INF/view/pages/showMovies.jsp" />
+		<put-attribute name="body" value="/WEB-INF/view/pages/movies.jsp" />
 	</definition>
 
 	<!-- Contact-us Page -->

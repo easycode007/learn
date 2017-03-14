@@ -18,6 +18,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.mov.model.Movie;
 import com.mov.model.MovieDao;
 
+import java.util.List;
+
 @Controller
 public class MovieController {
 	private Log log  = LogFactory.getLog(this.getClass());
@@ -51,14 +53,15 @@ public class MovieController {
 	}
 
 	
-	@RequestMapping("/list")
-	public @ResponseBody Iterable listMovies() {
-		Iterable<Movie> movies = movieDao.findAll();	
-		return movies;
+	@RequestMapping(value="/movies", method = RequestMethod.GET)
+	public ModelAndView listMovies(Model model) {
+//	    List<Movie> movies = (List<Movie>) movieDao.findAll();
+//        model.addAttribute("movieList", movies);
+		return new ModelAndView("movies");
 	}
 	
 	// comentat RequestMethod.GET pentru a putea face debug in browser
-	@RequestMapping(value = "/movie/{id}"/*, method = RequestMethod.GET*/) 
+	@RequestMapping(value = "/movie/{id}", method = RequestMethod.GET)
 	public ModelAndView getMovie(Model model, @PathVariable("id") long id) {
 		Movie movie = movieDao.findOne(id);
 		String movieName = movie.getName();
