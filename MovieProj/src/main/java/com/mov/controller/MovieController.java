@@ -49,22 +49,7 @@ public class MovieController {
 		log.info("I am in showForm() method!!!");
 		return new ModelAndView("movie", "movie", new Movie()); // view | model | obiectul din model
 	}
-	
-	
-//	/// comentat RequestMethod.POST pentru a putea face debug in browser
-//	@RequestMapping(value="/movie", method = RequestMethod.POST)
-//	public String addMovie(Model m, String name, String genre) {
-//		try {
-//			Movie movie = new Movie(name, genre);
-//			movieDao.save(movie);
-//		} catch (Exception e) {
-//			m.addAttribute("error", e.toString());
-//			return "error";
-//		}
-//		m.addAttribute("name", name);
-//		m.addAttribute("genre", genre);
-//		return "success";
-//	}
+
 	
 	@RequestMapping("/list")
 	public @ResponseBody Iterable listMovies() {
