@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mov.model.Movie;
@@ -67,5 +66,23 @@ public class MovieController {
 		model.addAttribute("name", movie.getName());
 		model.addAttribute("genre", movie.getGenre());
 		return new ModelAndView("success");
+	}
+
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    public ModelAndView searchAMovie() {
+        log.info("I am in search method()");
+        return new ModelAndView("search");
+    }
+
+	@RequestMapping(value = "/search", method = RequestMethod.POST)
+	public ModelAndView search(@Valid @ModelAttribute("name")String name, BindingResult result, Model model) {
+		log.info("I am in the search method functionality");
+		if(result.hasErrors()) {
+			model.addAttribute("msg", result.getAllErrors().toString());
+			return new ModelAndView("error");
+		}
+		List<Movie> results = movieDao.findByName(name);
+        model.addAttribute("movieList", results);
+		return new ModelAndView("movies");
 	}
 }
