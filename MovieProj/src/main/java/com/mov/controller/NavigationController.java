@@ -34,9 +34,4 @@ public class NavigationController {
 	public ModelAndView contactUS() {
 		return new ModelAndView("contactus");
 	}
-	
-	@RequestMapping(value = "/error", method = RequestMethod.GET)
-	public ModelAndView error() {
-		return new ModelAndView("error");
-	}
 }

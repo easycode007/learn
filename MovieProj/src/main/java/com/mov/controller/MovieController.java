@@ -37,13 +37,13 @@ public class MovieController {
 		try {
 			movieDao.save(movie);
 		} catch (Exception e) {
-			model.addAttribute("error", e.toString());
-			log.info("Error when I try to add data into db:  " + e.toString());
-			return new ModelAndView("error");
-		}
+            model.addAttribute("error", e.toString());
+            log.info("Error when I try to add data into db:  " + e.toString());
+            return new ModelAndView("error");
+        }
 		model.addAttribute("name", movie.getName());
 		model.addAttribute("genre", movie.getGenre());
-		return new ModelAndView("movieView");
+        return new ModelAndView("success");
 	}
 	
 	@RequestMapping(value="/movie", method = RequestMethod.GET)
@@ -55,8 +55,8 @@ public class MovieController {
 	
 	@RequestMapping(value="/movies", method = RequestMethod.GET)
 	public ModelAndView listMovies(Model model) {
-//	    List<Movie> movies = (List<Movie>) movieDao.findAll();
-//        model.addAttribute("movieList", movies);
+	    List<Movie> movies = (List<Movie>) movieDao.findAll();
+        model.addAttribute("movieList", movies);
 		return new ModelAndView("movies");
 	}
 	
@@ -64,11 +64,8 @@ public class MovieController {
 	@RequestMapping(value = "/movie/{id}", method = RequestMethod.GET)
 	public ModelAndView getMovie(Model model, @PathVariable("id") long id) {
 		Movie movie = movieDao.findOne(id);
-		String movieName = movie.getName();
-		String movieGenre = movie.getGenre();
-		System.out.println("----> " + movieName + " : " + movieGenre);
-		model.addAttribute("name", movieName);
-		model.addAttribute("genre", movieGenre);
-		return new ModelAndView("movie");
+		model.addAttribute("name", movie.getName());
+		model.addAttribute("genre", movie.getGenre());
+		return new ModelAndView("success");
 	}
 }
