@@ -9,6 +9,7 @@
 		<title><tiles:getAsString name="title" /></title>
 		<link href="<c:url value='/css/bootstrap.css'/>" rel="stylesheet"/>
 		<link href="<c:url value='/css/style.css'/>" rel="stylesheet"/>
+		<script src="/javascript/script.js"></script>
 	</head>
 
 	<body>

@@ -104,9 +104,23 @@ body {
 }
 
 table {
+    color: #333; /* Lighten up font color */
     width: 640px; /* Make table wider */
+    border-collapse: collapse;
+    border-spacing: 0;
 }
 
 #listMovies td, th {
     border: 1px solid #CCC; /* Add borders to cells */
+}
+
+#listMovies th {
+    background: #F3F3F3; /* Light grey background */
+    font-weight: bold; /* Make sure they're bold */
+    text-align: center; /* Center our text */
+}
+
+#listMovies td {
+    background: #FAFAFA; /* Lighter grey background */
+    text-align: center; /* Center our text */
 }
