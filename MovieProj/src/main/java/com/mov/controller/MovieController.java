@@ -1,7 +1,6 @@
 package com.mov.controller;
 
 import javax.validation.Valid;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-
 import com.mov.model.Movie;
 import com.mov.model.MovieDao;
-
 import java.util.List;
 
 @Controller
@@ -68,10 +65,20 @@ public class MovieController {
 		return new ModelAndView("success");
 	}
 
+/*	// comentat RequestMethod.GET pentru a putea face debug in browser
+	@RequestMapping(value = "/movie/{name}", method = RequestMethod.GET)
+	public ModelAndView getMovie(Model model, @PathVariable("name") String name) {
+		Movie movie = movieDao.findOne(name);
+		model.addAttribute("name", movie.getName());
+		model.addAttribute("genre", movie.getGenre());
+		return new ModelAndView("success");
+	}*/
+
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     public ModelAndView searchAMovie() {
         log.info("I am in search method()");
-        return new ModelAndView("search");
+        return new ModelAndView("search", "name", new Movie()); // name from model name
+            // corespunde cu <name> din @ModelAttribute de mai jos din /search method
     }
 
 	@RequestMapping(value = "/search", method = RequestMethod.POST)

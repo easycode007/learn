@@ -9,4 +9,5 @@ import java.util.List;
 public interface MovieDao extends CrudRepository<Movie, Long>  {
 
 	public List<Movie> findByName(String name);
+
 }
