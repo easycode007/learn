@@ -9,6 +9,8 @@
 		<title><tiles:getAsString name="title" /></title>
 		<link href="<c:url value='/css/bootstrap.css'/>" rel="stylesheet"/>
 		<link href="<c:url value='/css/style.css'/>" rel="stylesheet"/>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+		<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
 		<script src="/javascript/script.js"></script>
 	</head>
 
