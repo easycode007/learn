@@ -1,4 +1,4 @@
-<table>
+<table id="listMovies">
     <tr>
         <td> NAME </td>
         <td> GENRE </td>
