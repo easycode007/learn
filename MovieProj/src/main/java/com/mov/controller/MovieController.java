@@ -31,6 +31,11 @@ public class MovieController {
 			return new ModelAndView("error");
 		}
 		try {
+			if (existsInDb(movie)) {
+//				model.addAttribute("error", "This Movie exists in DB");
+				log.info("This Movie exists in DB:  ");
+//				return new ModelAndView("error", "msg", "This Movie exists in DB");
+			}
 			movieDao.save(movie);
 		} catch (Exception e) {
             model.addAttribute("error", e.toString());
@@ -40,6 +45,16 @@ public class MovieController {
 		model.addAttribute("name", movie.getName());
 		model.addAttribute("genre", movie.getGenre());
         return new ModelAndView("success");
+	}
+
+	public boolean existsInDb(Movie movie) {
+		List<Movie> movies = (List<Movie>) movieDao.findAll();
+		for(Movie m: movies) {
+			if(m.getName().equals(movie.getName()) && m.getGenre().equals(movie.getGenre())) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	@RequestMapping(value="/movie", method = RequestMethod.GET)
