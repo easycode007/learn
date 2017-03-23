@@ -7,10 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import com.mov.model.Movie;
 import com.mov.model.MovieDao;
@@ -95,6 +92,12 @@ public class MovieController {
         return new ModelAndView("search", "name", new Movie()); // name from model name
             // corespunde cu <name> din @ModelAttribute de mai jos din /search method
     }
+
+    @DeleteMapping("/movie/{id}")
+	public void deleteMovieForm(@Valid @ModelAttribute("movie") @PathVariable("id")long id, BindingResult result, Model model) {
+    	log.info("I am in delete controller()");
+    	movieDao.delete(id);
+	}
 
 	@RequestMapping(value = "/search", method = RequestMethod.POST)
 	public ModelAndView search(@Valid @ModelAttribute("name")String name, BindingResult result, Model model) {

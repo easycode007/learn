@@ -14,10 +14,12 @@
                 <td>${movie.name}</td>
                 <td>${movie.genre}</td>
                 <td>
-                    <form:form id="editMovie" method="POST" action="/edit" modelAttribute="movie">
+                    <%--
+                    <form:form id="editMovie" method="GET" action="/edit" modelAttribute="movie">
                         <input type="submit" value="EDIT"/>
                     </form:form>
-                    <form:form id="deleteMovie" method="POST" action="/delete" modelAttribute="movie">
+                    --%>
+                    <form:form id="deleteMovie" method="DELETE" action="/movie/{${movie.id}}" modelAttribute="movie">
                         <input type="submit" value="DELETE"/>
                     </form:form>
                 </td>
