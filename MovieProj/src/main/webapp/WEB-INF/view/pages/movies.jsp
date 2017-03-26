@@ -14,7 +14,7 @@
                 <td>${movie.name}</td>
                 <td>${movie.genre}</td>
                 <td>
-                    <form:form method="DELETE" action="/movie/${movie.id}">
+                    <form:form method="DELETE" action="/movie/${movie.id}" modelAttribute="movie">
                         <input type="submit" value="DELETE"/>
                     </form:form>
                 </td>

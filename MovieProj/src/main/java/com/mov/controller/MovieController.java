@@ -68,25 +68,23 @@ public class MovieController {
 		return new ModelAndView("movies");
 	}
 	
-	// comentat RequestMethod.GET pentru a putea face debug in browser
-	@RequestMapping(value = "/movie/{id}", method = RequestMethod.GET)
-	public ModelAndView getMovie(Model model, @PathVariable("id") long id) {
-		Movie movie = movieDao.findOne(id);
-		model.addAttribute("name", movie.getName());
-		model.addAttribute("genre", movie.getGenre());
-		return new ModelAndView("success");
-	}
+//	// comentat RequestMethod.GET pentru a putea face debug in browser
+//	@RequestMapping(value = "/movie/{id}", method = RequestMethod.GET)
+//	public ModelAndView getMovie(Model model, @PathVariable("id") long id) {
+//		Movie movie = movieDao.findOne(id);
+//		model.addAttribute("name", movie.getName());
+//		model.addAttribute("genre", movie.getGenre());
+//		return new ModelAndView("success");
+//	}
 
 	@RequestMapping(value = "/movie/{id}", method = RequestMethod.DELETE)
-	public ModelAndView deleteMovie(@PathVariable("id") long id) {
+	public ModelAndView deleteMovie(Model model, @PathVariable("id") long id, Movie movie) {
 		log.info("I am in delete controller()");
-		Movie m = null;
 		if(movieDao.exists(id)) {
-			m = new Movie(id);
 			movieDao.delete(id);
-//			model.addAttribute("id", m.getId());
-//			model.addAttribute("name", m.getName());
-//			model.addAttribute("genre", m.getGenre());
+			model.addAttribute("id", movie.getId());
+			model.addAttribute("name", movie.getName());
+			model.addAttribute("genre", movie.getGenre());
 			return new ModelAndView("doneDeleting");
 		} else {
 			return new ModelAndView("error");
