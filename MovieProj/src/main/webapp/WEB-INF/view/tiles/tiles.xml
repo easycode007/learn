@@ -48,6 +48,12 @@
 		<put-attribute name="body" value="/WEB-INF/view/pages/search.jsp" />
 	</definition>
 
+	<!-- Search a movie -->
+	<definition name="doneDeleting" extends="base-definition">
+		<put-attribute name="title" value="Search a movie" />
+		<put-attribute name="body" value="/WEB-INF/view/pages/doneDeleting.jsp" />
+	</definition>
+
 	<!-- Error Page -->
 	<definition name="error" extends="base-definition">
 		<put-attribute name="title" value="Error page" />
