@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<h2> Movies results </h2>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<h2> Moviess results </h2>
 <table id="listMovies">
     <thead>
         <tr>
@@ -14,7 +15,7 @@
                 <td>${movie.name}</td>
                 <td>${movie.genre}</td>
                 <td>
-                    <form:form method="DELETE" action="/movie/${movie.id}" modelAttribute="movie">
+                    <form:form method="DELETE" action="/movie/${movie.id}">
                         <input type="submit" value="DELETE"/>
                     </form:form>
                 </td>

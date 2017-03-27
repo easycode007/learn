@@ -48,9 +48,9 @@
 		<put-attribute name="body" value="/WEB-INF/view/pages/search.jsp" />
 	</definition>
 
-	<!-- Search a movie -->
+	<!-- Done deleting a movie -->
 	<definition name="doneDeleting" extends="base-definition">
-		<put-attribute name="title" value="Search a movie" />
+		<put-attribute name="title" value="Done deleting" />
 		<put-attribute name="body" value="/WEB-INF/view/pages/doneDeleting.jsp" />
 	</definition>
 

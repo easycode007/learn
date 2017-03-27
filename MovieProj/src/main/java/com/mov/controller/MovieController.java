@@ -77,18 +77,21 @@ public class MovieController {
 //		return new ModelAndView("success");
 //	}
 
+	@ResponseBody
 	@RequestMapping(value = "/movie/{id}", method = RequestMethod.DELETE)
-	public ModelAndView deleteMovie(Model model, @PathVariable("id") long id, Movie movie) {
+	public String deleteMovie(Model model, @PathVariable("id") long id) {
 		log.info("I am in delete controller()");
 		if(movieDao.exists(id)) {
 			movieDao.delete(id);
-			model.addAttribute("id", movie.getId());
-			model.addAttribute("name", movie.getName());
-			model.addAttribute("genre", movie.getGenre());
-			return new ModelAndView("doneDeleting");
+			return "redirect:doneDeleting";
 		} else {
-			return new ModelAndView("error");
+			return "redirect:movies";
 		}
+			//model.addAttribute("id", id);
+//			return new ModelAndView("movies");
+//		} else {
+//			return new ModelAndView("error");
+//		}
 	}
 
 /*	// comentat RequestMethod.GET pentru a putea face debug in browser
@@ -106,13 +109,6 @@ public class MovieController {
         return new ModelAndView("search", "name", new Movie()); // name from model name
             // corespunde cu <name> din @ModelAttribute de mai jos din /search method
     }
-
-/*    @RequestMapping(value = "/movie/{id}", method = RequestMethod.DELETE)
-	public void deleteMovieForm(@Valid @ModelAttribute("movie") *//*@PathVariable("id")*//*long id,
-								BindingResult result, Model model) {
-    	log.info("I am in delete controller()");
-    	movieDao.delete(id);
-	}*/
 
 	@RequestMapping(value = "/search", method = RequestMethod.POST)
 	public ModelAndView search(@Valid @ModelAttribute("name")String name, BindingResult result, Model model) {
