@@ -22,6 +22,8 @@ $(document).ready(function() {
                 respContent += movie.genre + "]</span>";
 
                 $("#fromResponse").html(respContent);
+                $("a[href='/movie/" + movie.id + "']").closest('tr').remove()
+//                $(this).closest('tr').remove()
               }
         });
         event.preventDefault();
