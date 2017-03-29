@@ -13,6 +13,7 @@
 		<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
 		<script src="/javascript/script.js"></script>
 		<script src="/javascript/delete.js"></script>
+		<script src="/javascript/addMovie.js"></script>
 	</head>
 
 	<body>

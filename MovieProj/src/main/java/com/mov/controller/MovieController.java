@@ -22,30 +22,50 @@ public class MovieController {
 	
 	@Autowired
 	private MovieDao movieDao;
-	
-	@RequestMapping(value = "/movie", method = RequestMethod.POST)
-	public ModelAndView submit(@Valid @ModelAttribute("movie")Movie movie, BindingResult result, Model model) {
-		log.info("I am in the submit form");
-		if(result.hasErrors()) {
-			model.addAttribute("msg", result.getAllErrors().toString());
-			return new ModelAndView("error");
+
+	@RequestMapping(
+			value = "/movie",
+			method = RequestMethod.POST,
+			produces = MediaType.APPLICATION_JSON_VALUE,
+			consumes = MediaType.APPLICATION_JSON_VALUE
+	)
+	@ResponseBody
+	public Movie addMovie(@RequestBody Movie movie) {
+		if(existsInDb(movie)) {
+			return null;
 		}
-		try {
-			if (existsInDb(movie)) {
-//				model.addAttribute("error", "This Movie exists in DB");
-				log.info("This Movie exists in DB:  ");
-//				return new ModelAndView("error", "msg", "This Movie exists in DB");
-			}
-			movieDao.save(movie);
-		} catch (Exception e) {
-            model.addAttribute("error", e.toString());
-            log.info("Error when I try to add data into db:  " + e.toString());
-            return new ModelAndView("error");
-        }
-		model.addAttribute("name", movie.getName());
-		model.addAttribute("genre", movie.getGenre());
-        return new ModelAndView("success");
+		movieDao.save(movie);
+		return movie;
 	}
+	
+//	@RequestMapping(
+//			value = "/movie",
+//			method = RequestMethod.POST,
+//			produces = MediaType.APPLICATION_JSON_VALUE,
+//			consumes = MediaType.APPLICATION_JSON_VALUE
+//	)
+//	public Movie submit(@Valid @ModelAttribute("movie")Movie movie, BindingResult result, Model model) {
+//		log.info("I am in the submit form");
+//		if(result.hasErrors()) {
+////			model.addAttribute("msg", result.getAllErrors().toString());
+//			return null;
+//		}
+//		try {
+//			if (existsInDb(movie)) {
+////				model.addAttribute("error", "This Movie exists in DB");
+//				log.info("This Movie exists in DB:  ");
+////				return new ModelAndView("error", "msg", "This Movie exists in DB");
+//			}
+//			movieDao.save(movie);
+//		} catch (Exception e) {
+////            model.addAttribute("error", e.toString());
+//            log.info("Error when I try to add data into db:  " + e.toString());
+//            return null;
+//        }
+////		model.addAttribute("name", movie.getName());
+////		model.addAttribute("genre", movie.getGenre());
+//        return movie;
+//	}
 
 	public boolean existsInDb(Movie movie) {
 		List<Movie> movies = (List<Movie>) movieDao.findAll();

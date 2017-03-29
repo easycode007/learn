@@ -1,5 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<form:form method="POST" action="/movie" modelAttribute="movie">
+<form:form id="addMovieForm" method="POST" action="/movie" modelAttribute="movie">
 	<table>
 		<tr>
 			<td><form:label path="name">Name</form:label></td>
@@ -14,3 +14,4 @@
 		</tr>
 	</table>
 </form:form>
+<div id="movieAdded"></div>

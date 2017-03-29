@@ -21,7 +21,7 @@
                             <input type="submit" value="DELETE"/>
                         </form:form>
                     --%>
-                    <a id='DELETE' href="${pageContext.request.contextPath}/movie/${movie.id}">DELETE</a>
+                    <a id='DELETE' href="/movie/${movie.id}">DELETE</a>
                 </td>
             </tr>
         </c:forEach>
