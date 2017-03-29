@@ -4,6 +4,7 @@ import javax.validation.Valid;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,6 +13,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.mov.model.Movie;
 import com.mov.model.MovieDao;
 import java.util.List;
+
+import static org.springframework.http.MediaType.TEXT_HTML;
 
 @Controller
 public class MovieController {
@@ -78,20 +81,18 @@ public class MovieController {
 //	}
 
 	@ResponseBody
-	@RequestMapping(value = "/movie/{id}", method = RequestMethod.DELETE)
-	public String deleteMovie(Model model, @PathVariable("id") long id) {
+	@RequestMapping(value = "/movie/{id}", method = RequestMethod.DELETE,
+			produces = MediaType.APPLICATION_JSON_VALUE,
+			consumes = MediaType.APPLICATION_JSON_VALUE)
+	public Movie deleteMovie(@PathVariable("id") long id) {
 		log.info("I am in delete controller()");
 		if(movieDao.exists(id)) {
+			Movie movie = movieDao.findOne(id);
+			log.info(movie.toString());
 			movieDao.delete(id);
-			return "redirect:doneDeleting";
-		} else {
-			return "redirect:movies";
+			return movie;
 		}
-			//model.addAttribute("id", id);
-//			return new ModelAndView("movies");
-//		} else {
-//			return new ModelAndView("error");
-//		}
+		return null;
 	}
 
 /*	// comentat RequestMethod.GET pentru a putea face debug in browser

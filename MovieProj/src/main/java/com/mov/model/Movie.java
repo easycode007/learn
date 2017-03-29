@@ -1,7 +1,11 @@
 package com.mov.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,32 +16,22 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "movies")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Movie implements Serializable {
 	
 	// An auto generated id (unique for each user in the db)
-	@Id
-	@Getter
-	@Setter
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Id	@Getter	@Setter	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	  
-	@NotNull
-	@Getter
-	@Setter
+	@NotNull @Getter @Setter
 	private String name;
-	@NotNull
-	@Getter
-	@Setter
+
+	@NotNull @Getter @Setter
 	private String genre;
 
-	public Movie() { }
-
-	public Movie(long id) {
-		this.id = id;
-	}
-
-	public Movie(String name, String genre) {
-		this.name = name;
-		this.genre = genre;
+	@Override
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this);
 	}
 }
