@@ -2,7 +2,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <h2> Moviess results </h2>
 <div id="fromResponse"></div>
-<table id="listMovies">
+<table id="listMovies" class="table table-bordered">
     <thead>
         <tr>
             <th>Name</th>
@@ -18,10 +18,10 @@
                 <td>
                     <%--
                         <form:form method="DELETE" action="/movie/${movie.id}">
-                            <input type="submit" value="DELETE"/>
+                            <input type="submit" value="DELETE" class="btn-danger"/>
                         </form:form>
                     --%>
-                    <a id='DELETE' href="/movie/${movie.id}">DELETE</a>
+                    <a class="btn btn-default" id='DELETE' href="/movie/${movie.id}">DELETE</a>
                 </td>
             </tr>
         </c:forEach>

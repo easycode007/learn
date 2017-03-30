@@ -4,10 +4,10 @@
     <table>
         <tr>
             <td><form:label path="name">Name</form:label></td>
-            <td><form:input path="name" /></td>
+            <td><form:input path="name" class="form-control"/></td>
         </tr>
         <tr>
-            <td><input type="submit" value="Search"/></td>
+            <td><input type="submit" value="Search" class="btn btn-success"/></td>
         </tr>
     </table>
 </form:form>

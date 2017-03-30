@@ -9,8 +9,11 @@
 		<title><tiles:getAsString name="title" /></title>
 		<link href="<c:url value='/css/bootstrap.css'/>" rel="stylesheet"/>
 		<link href="<c:url value='/css/style.css'/>" rel="stylesheet"/>
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 		<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<script src="/javascript/script.js"></script>
 		<script src="/javascript/delete.js"></script>
 		<script src="/javascript/addMovie.js"></script>
