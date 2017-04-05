@@ -1,106 +1,27 @@
-html {
-	background-color:#2F2F2F;
-}
-
-body {
-	height: 100%;
-	background-color:rgb(245, 245, 245);
-}
-
 #header {
-    margin-left:20%;
-    top: 0px;
-    width: 80%;
-	height: 20%;
-	position: fixed;
-	font-family: 'bgMed',arial,helvetica,sans-serif;
-    font-size: 0.6em;
-    color: #fff;
-    z-index: 15;
-    text-transform: uppercase;
     background-color: #272727;
-    border-bottom: 2px solid hsl(180,70%,55%);
-    padding-top:20px;
-    text-align:center;
-}
-
-#footer {
-	margin-left:20%;
-    left: 0px;
-    bottom: 0px;
-    width: 80%;
-	height: 10%;
-	position: fixed;
-	font-family: 'bgMed',arial,helvetica,sans-serif;
-    font-size: 0.6em;
-    color: #fff;
-    z-index: 15;
-    text-transform: uppercase;
-    background-color: #272727;
-	padding-top:20px;   
-    text-align:center;
-}
-
-#sidemenu {
-    width: 20%;
-    background-color:#2B2B2B;
-    height: 100%;
-    overflow: auto;
-    float: left;
-    z-index: 20;
-    position: fixed;
-    left: 0px;
-    margin-top:
-}
-
-#sidemenu #menu {
-    color: #fff;
-    text-align: right;
-    list-style-type: none;
-    margin-right: 40px;
-    float: right;
-    margin-top: 10px;
-}
-
-#sidemenu #menu li {
-    width: 150px;
-    height: 35px;
-    font-size: 1.2em;
-    padding-right:5px;
-}
-
-#sidemenu #menu li a {
-    text-decoration: none;
-    text-transform: uppercase;
-    color: #fff;
-}
-
-#sidemenu #menu li:active{
-	border-left: 5px solid hsl(180,70%,55%);
-}
-
-#sidemenu #menu li:hover {
-    background-color: #635555;
-    border-left: 5px solid hsl(180,70%,55%);
-}
-
-.logo {
-	float:left;
+    height: 10%;
+    width: 100%;
+    font-family: 'bgMed',arial,helvetica,sans-serif;
 }
 
 #site-content {
-    width: 80%;
-    height: 100%;
-    overflow: auto;
-    float: left;
-    z-index: 20;
-    position: fixed;
-    min-height: 600px;
-    margin-bottom:10%;
-    margin-left:20%;
-    padding-left:10px;
-    margin-top: 17%;
-    position: fixed;
+    bottom: 0;
+    height: 80%;
+    margin-top: 20px;
+}
+
+#footer {
+    background-color: #272727;
+    bottom: 0;
+    height: 10%;
+    width: 100%;
+    font-family: 'bgMed',arial,helvetica,sans-serif;
+    /*position: absolute;*/
+}
+
+#sidemenu {
+    border-bottom: solid;
 }
 
 table {
@@ -110,22 +31,7 @@ table {
     border-spacing: 0;
 }
 
-#listMovies td, th {
-    border: 1px solid #CCC; /* Add borders to cells */
-}
-
-#listMovies th {
-    background: #F3F3F3; /* Light grey background */
-    font-weight: bold; /* Make sure they're bold */
-    text-align: center; /* Center our text */
-}
-
-#listMovies td {
-    background: #FAFAFA; /* Lighter grey background */
-    text-align: center; /* Center our text */
-}
-
-#movieTable {
-    overflow: auto;
-    height: 55%
+body {
+    width: 100%;
+    position: relative;
 }
