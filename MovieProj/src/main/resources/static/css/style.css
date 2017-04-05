@@ -7,8 +7,8 @@
 
 #site-content {
     bottom: 0;
-    height: 80%;
-    margin-top: 20px;
+    height: 76%;
+    margin-top: 30px;
 }
 
 #footer {
@@ -21,7 +21,11 @@
 }
 
 #sidemenu {
-    border-bottom: solid;
+    border-right: solid;
+    width: 20%;
+    height: 79%;
+    float: left;
+    margin-right: 30px;
 }
 
 table {
@@ -31,7 +35,23 @@ table {
     border-spacing: 0;
 }
 
+#movieTable {
+    overflow: auto;
+    height: 90%
+}
+
 body {
     width: 100%;
     position: relative;
+}
+
+#sidemenu #menu {
+    list-style-type: none;
+}
+
+#sidemenu #menu li a {
+    text-decoration: none;
+    text-transform: uppercase;
+    font-family: sans-serif;
+    font-weight: bold;
 }
