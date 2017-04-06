@@ -17,17 +17,10 @@ $(document).ready(function() {
         },
         success: function(movie) {
             var respContent = "";
-
-            respContent += "<span class='success'>Movie was added: [";
-            respContent += movie.id + " : ";
-            respContent += movie.name + " : " ;
-            respContent += movie.genre + "]</span>";
-
+            respContent += "<div class='success'><span>Well done! </span>Movie was added.</div>"
             $("#movieAdded").html(respContent);
         }
     });
-
     event.preventDefault();
   });
-
 });

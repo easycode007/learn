@@ -55,3 +55,18 @@ body {
     font-family: sans-serif;
     font-weight: bold;
 }
+
+
+/*successfull message*/
+.info, .success, .warning, .error, .validation {
+    border: 1px solid;
+    margin-top: 10px;
+    margin-left: 23%;
+    margin-right: 48%;
+    padding: 15px 10px 15px 50px;
+    background-position: 10px center;
+}
+.success {
+    color: #4F8A10;
+    background-color: #DFF2BF;
+}

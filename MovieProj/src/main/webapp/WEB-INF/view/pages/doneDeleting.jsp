@@ -1,1 +1,0 @@
-<p> Movie deleted with success </p>
