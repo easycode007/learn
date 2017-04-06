@@ -1,10 +1,9 @@
 $(document).ready(function() {
-    var editLink = $("a[id='EDIT']");
-    $(editLink).click(function(event) {
-        console.log("Am dat click")
+    var getLink = $("a[id='GET']");
+    $(getLink).click(function(event) {
         $.ajax({
             url: $(event.target).attr("href"),
-            type: "PUT",
+            type: "GET",
 
               beforeSend: function(xhr) {
                 xhr.setRequestHeader("Accept", "application/json");
@@ -12,8 +11,9 @@ $(document).ready(function() {
               },
 
               success: function(movie) {
-                console.log(movie);
-                console.log("MOVIE SUCCESSFULLY EDITED");
+                $("#edit_name").val(movie.name);
+                $("#edit_genre").val(movie.genre);
+                $("#EDIT").attr("href", "/movie/" + movie.id);
               }
         });
         event.preventDefault();

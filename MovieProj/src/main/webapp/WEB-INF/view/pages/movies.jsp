@@ -23,7 +23,7 @@
                             </form:form>
                         --%>
                         <a class="btn btn-default" id='DELETE' href="/movie/${movie.id}">DELETE</a>
-                        <a class="btn btn-default" id='EDIT' data-toggle="modal" data-target="#myModal" href="/movie/${movie.id}">EDIT</a>
+                        <a class="btn btn-default" id='GET' data-toggle="modal" data-target="#myModal" href="/movie/${movie.id}">EDIT</a>
                     </td>
                 </tr>
             </c:forEach>
@@ -38,16 +38,16 @@
   <div class="modal-content">
     <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal">&times;</button>
-      <h4 class="modal-title">${movie.name}</h4>
+      <h4 class="modal-title">Movie Information</h4>
     </div>
     <div class="modal-body">
-      <p>Some text in the modalasdasdasdasd.</p>
+      <input id="edit_name" type="text" value=""/>
+      <input id="edit_genre" type="text" value=""/>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-default" data-dismiss="modal">Apply</button>
+      <a class="btn btn-default" id='EDIT' data-dismiss="modal" href="">Apply</a>
       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
     </div>
   </div>
-
 </div>
 </div>

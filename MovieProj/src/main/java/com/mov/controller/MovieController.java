@@ -37,8 +37,116 @@ public class MovieController {
 		movieDao.save(movie);
 		return movie;
 	}
+
+	public boolean existsInDb(Movie movie) {
+		List<Movie> movies = (List<Movie>) movieDao.findAll();
+		for(Movie m: movies) {
+			if(m.getName().equals(movie.getName()) && m.getGenre().equals(movie.getGenre())) {
+				return true;
+			}
+		}
+		return false;
+	}
 	
-//	@RequestMapping(
+	@RequestMapping(value="/movie", method = RequestMethod.GET)
+	public ModelAndView showForm() {
+		log.info("I am in showForm() method!!!");
+		return new ModelAndView("movie", "movie", new Movie()); // view | model | obiectul din model
+	}
+
+	
+	@RequestMapping(value="/movies", method = RequestMethod.GET)
+	public ModelAndView listMovies(Model model) {
+	    List<Movie> movies = (List<Movie>) movieDao.findAll();
+        model.addAttribute("movieList", movies);
+		return new ModelAndView("movies");
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/movie/{id}", method = RequestMethod.DELETE,
+			produces = MediaType.APPLICATION_JSON_VALUE,
+			consumes = MediaType.APPLICATION_JSON_VALUE)
+	public Movie deleteMovie(@PathVariable("id") long id) {
+		log.info("I am in delete controller()");
+		if(movieDao.exists(id)) {
+			Movie movie = movieDao.findOne(id);
+			log.info(movie.toString());
+			movieDao.delete(id);
+			return movie;
+		}
+		return null;
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/movie/{id}", method = RequestMethod.GET,
+			produces = MediaType.APPLICATION_JSON_VALUE,
+			consumes = MediaType.APPLICATION_JSON_VALUE)
+	public Movie getAMovie(@PathVariable("id") long id) {
+		log.info("I am in getMovie | Controller");
+		if(movieDao.exists(id)) {
+			Movie movie = movieDao.findOne(id);
+			log.info(movie.toString());
+			return movie;
+		}
+		return null;
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/movie/{id}", method = RequestMethod.PUT,
+			produces = MediaType.APPLICATION_JSON_VALUE,
+			consumes = MediaType.APPLICATION_JSON_VALUE)
+	public Movie editMovie(@PathVariable("id") long id) {
+		log.info("I am in editMovie | Controller");
+		if(movieDao.exists(id)) {
+			log.info("-------------MOVIE EXISTS OAIE");
+			Movie movie = movieDao.findOne(id);
+			movieDao.save(movie);
+			log.info(movie.toString());
+			return movie;
+		}
+		return null;
+	}
+
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    public ModelAndView searchAMovie() {
+        log.info("I am in search method()");
+        return new ModelAndView("search", "name", new Movie()); // name from model name
+            // corespunde cu <name> din @ModelAttribute de mai jos din /search method
+    }
+
+	@RequestMapping(value = "/search", method = RequestMethod.POST)
+	public ModelAndView search(@Valid @ModelAttribute("name")String name, BindingResult result, Model model) {
+		log.info("I am in the search method functionality");
+		if(result.hasErrors()) {
+			model.addAttribute("msg", result.getAllErrors().toString());
+			return new ModelAndView("error");
+		}
+		List<Movie> results = movieDao.findByName(name);
+        model.addAttribute("movieList", results);
+		return new ModelAndView("movies");
+	}
+
+	/*	// comentat RequestMethod.GET pentru a putea face debug in browser
+	@RequestMapping(value = "/movie/{name}", method = RequestMethod.GET)
+	public ModelAndView getMovie(Model model, @PathVariable("name") String name) {
+		Movie movie = movieDao.findOne(name);
+		model.addAttribute("name", movie.getName());
+		model.addAttribute("genre", movie.getGenre());
+		return new ModelAndView("success");
+	}*/
+
+
+//	// comentat RequestMethod.GET pentru a putea face debug in browser
+//	@RequestMapping(value = "/movie/{id}", method = RequestMethod.GET)
+//	public ModelAndView getMovie(Model model, @PathVariable("id") long id) {
+//		Movie movie = movieDao.findOne(id);
+//		model.addAttribute("name", movie.getName());
+//		model.addAttribute("genre", movie.getGenre());
+//		return new ModelAndView("success");
+//	}
+
+
+	//	@RequestMapping(
 //			value = "/movie",
 //			method = RequestMethod.POST,
 //			produces = MediaType.APPLICATION_JSON_VALUE,
@@ -67,79 +175,5 @@ public class MovieController {
 //        return movie;
 //	}
 
-	public boolean existsInDb(Movie movie) {
-		List<Movie> movies = (List<Movie>) movieDao.findAll();
-		for(Movie m: movies) {
-			if(m.getName().equals(movie.getName()) && m.getGenre().equals(movie.getGenre())) {
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	@RequestMapping(value="/movie", method = RequestMethod.GET)
-	public ModelAndView showForm() {
-		log.info("I am in showForm() method!!!");
-		return new ModelAndView("movie", "movie", new Movie()); // view | model | obiectul din model
-	}
 
-	
-	@RequestMapping(value="/movies", method = RequestMethod.GET)
-	public ModelAndView listMovies(Model model) {
-	    List<Movie> movies = (List<Movie>) movieDao.findAll();
-        model.addAttribute("movieList", movies);
-		return new ModelAndView("movies");
-	}
-	
-//	// comentat RequestMethod.GET pentru a putea face debug in browser
-//	@RequestMapping(value = "/movie/{id}", method = RequestMethod.GET)
-//	public ModelAndView getMovie(Model model, @PathVariable("id") long id) {
-//		Movie movie = movieDao.findOne(id);
-//		model.addAttribute("name", movie.getName());
-//		model.addAttribute("genre", movie.getGenre());
-//		return new ModelAndView("success");
-//	}
-
-	@ResponseBody
-	@RequestMapping(value = "/movie/{id}", method = RequestMethod.DELETE,
-			produces = MediaType.APPLICATION_JSON_VALUE,
-			consumes = MediaType.APPLICATION_JSON_VALUE)
-	public Movie deleteMovie(@PathVariable("id") long id) {
-		log.info("I am in delete controller()");
-		if(movieDao.exists(id)) {
-			Movie movie = movieDao.findOne(id);
-			log.info(movie.toString());
-			movieDao.delete(id);
-			return movie;
-		}
-		return null;
-	}
-
-/*	// comentat RequestMethod.GET pentru a putea face debug in browser
-	@RequestMapping(value = "/movie/{name}", method = RequestMethod.GET)
-	public ModelAndView getMovie(Model model, @PathVariable("name") String name) {
-		Movie movie = movieDao.findOne(name);
-		model.addAttribute("name", movie.getName());
-		model.addAttribute("genre", movie.getGenre());
-		return new ModelAndView("success");
-	}*/
-
-    @RequestMapping(value = "/search", method = RequestMethod.GET)
-    public ModelAndView searchAMovie() {
-        log.info("I am in search method()");
-        return new ModelAndView("search", "name", new Movie()); // name from model name
-            // corespunde cu <name> din @ModelAttribute de mai jos din /search method
-    }
-
-	@RequestMapping(value = "/search", method = RequestMethod.POST)
-	public ModelAndView search(@Valid @ModelAttribute("name")String name, BindingResult result, Model model) {
-		log.info("I am in the search method functionality");
-		if(result.hasErrors()) {
-			model.addAttribute("msg", result.getAllErrors().toString());
-			return new ModelAndView("error");
-		}
-		List<Movie> results = movieDao.findByName(name);
-        model.addAttribute("movieList", results);
-		return new ModelAndView("movies");
-	}
 }

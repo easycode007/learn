@@ -16,7 +16,9 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<script src="/javascript/script.js"></script>
 		<script src="/javascript/delete.js"></script>
+		<script src="/javascript/getMovie.js"></script>
 		<script src="/javascript/addMovie.js"></script>
+		<script src="/javascript/edit.js"></script>
 	</head>
 
 	<body>

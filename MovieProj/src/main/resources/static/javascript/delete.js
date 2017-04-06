@@ -3,7 +3,6 @@ $(document).ready(function() {
     var deleteLink = $("a[id='DELETE']");
 
     $(deleteLink).click(function(event) {
-        console.log('something smart - in click event method')
         $.ajax({
             url: $(event.target).attr("href"),
             type: "DELETE",
