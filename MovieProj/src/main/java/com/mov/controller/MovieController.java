@@ -91,17 +91,16 @@ public class MovieController {
 		return null;
 	}
 
-	@ResponseBody
+//	@ResponseBody
 	@RequestMapping(value = "/movie",
 			method = RequestMethod.PUT,
 			produces = MediaType.APPLICATION_JSON_VALUE,
 			consumes = MediaType.APPLICATION_JSON_VALUE)
-	public Movie editMovie(@RequestBody Movie movie) {
+	public void editMovie(@RequestBody Movie movie) {
 		log.info("I am in editMovie | Controller");
-		log.info(movie.toString());
-		//movieDao.save(movie);
-
-		return movie;
+		log.info("MOVIE ID: " + movie.getId());
+//		movieDao.save(movie);
+//		return movie;
 	}
 
     @RequestMapping(value = "/search", method = RequestMethod.GET)
