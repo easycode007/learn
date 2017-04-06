@@ -92,19 +92,16 @@ public class MovieController {
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/movie/{id}", method = RequestMethod.PUT,
+	@RequestMapping(value = "/movie",
+			method = RequestMethod.PUT,
 			produces = MediaType.APPLICATION_JSON_VALUE,
 			consumes = MediaType.APPLICATION_JSON_VALUE)
-	public Movie editMovie(@PathVariable("id") long id) {
+	public Movie editMovie(@RequestBody Movie movie) {
 		log.info("I am in editMovie | Controller");
-		if(movieDao.exists(id)) {
-			log.info("-------------MOVIE EXISTS OAIE");
-			Movie movie = movieDao.findOne(id);
-			movieDao.save(movie);
-			log.info(movie.toString());
-			return movie;
-		}
-		return null;
+		log.info(movie.toString());
+		//movieDao.save(movie);
+
+		return movie;
 	}
 
     @RequestMapping(value = "/search", method = RequestMethod.GET)

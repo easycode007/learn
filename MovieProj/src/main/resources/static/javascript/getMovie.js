@@ -13,7 +13,6 @@ $(document).ready(function() {
               success: function(movie) {
                 $("#edit_name").val(movie.name);
                 $("#edit_genre").val(movie.genre);
-                $("#EDIT").attr("href", "/movie/" + movie.id);
               }
         });
         event.preventDefault();

@@ -45,7 +45,7 @@
       <input id="edit_genre" type="text" value=""/>
     </div>
     <div class="modal-footer">
-      <a class="btn btn-default" id='EDIT' data-dismiss="modal" href="">Apply</a>
+      <a class="btn btn-default" id='EDIT' data-dismiss="modal" href="movie">Apply</a>
       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
     </div>
   </div>
