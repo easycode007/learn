@@ -9,6 +9,7 @@
 		<title><tiles:getAsString name="title" /></title>
 		<link href="<c:url value='/css/bootstrap.css'/>" rel="stylesheet"/>
 		<link href="<c:url value='/css/style.css'/>" rel="stylesheet"/>
+		<link href="<c:url value='/css/checkmark.css'/>" rel="stylesheet"/>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
