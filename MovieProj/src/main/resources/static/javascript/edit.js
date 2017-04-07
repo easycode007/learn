@@ -1,7 +1,6 @@
 $(document).ready(function() {
     var editLink = $("a[id='EDIT']");
 
-
     $(editLink).click(function(event) {
         var name = $("input[id='edit_name']").val();
         var genre = $("input[id='edit_genre']").val();
@@ -11,17 +10,18 @@ $(document).ready(function() {
         $.ajax({
             url: $(event.target).attr("href"),
             data: JSON.stringify(json),
+            dataType: 'json',
             type: "PUT",
-
-              beforeSend: function(xhr) {
-                xhr.setRequestHeader("Accept", "application/json");
-                xhr.setRequestHeader("Content-Type", "application/json");
-              },
-
-              success: function(movie) {
-                console.log(movie);
-                console.log("MOVIE SUCCESSFULLY EDITED");
-              }
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            success: function(movie) {
+                console.log("Movie successfully modified");
+                console.log("name: " + name + " genre: " + genre);
+                $("a[href='/movie/" + movie.id + "']").parent().siblings('.movie_name').text(movie.name);
+                $("a[href='/movie/" + movie.id + "']").parent().siblings('.movie_genre').text(movie.genre);
+            }
         });
         event.preventDefault();
     });

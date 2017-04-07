@@ -14,8 +14,8 @@
         <tbody>
             <c:forEach items="${movieList}" var="movie">
                 <tr>
-                    <td>${movie.name}</td>
-                    <td>${movie.genre}</td>
+                    <td class="movie_name">${movie.name}</td>
+                    <td class="movie_genre">${movie.genre}</td>
                     <td>
                         <a class="btn btn-default" id='DELETE' href="/movie/${movie.id}">DELETE</a>
                         <a class="btn btn-default" id='GET' data-toggle="modal" data-target="#myModal" href="/movie/${movie.id}">EDIT</a>

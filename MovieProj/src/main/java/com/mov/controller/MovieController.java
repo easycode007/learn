@@ -103,7 +103,6 @@ public class MovieController {
 		m.setGenre(movie.getGenre());
 		log.info(m);
 		movieDao.save(m);
-
 		return movie;
 	}
 
