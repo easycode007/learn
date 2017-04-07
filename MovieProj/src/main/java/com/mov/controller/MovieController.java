@@ -98,8 +98,11 @@ public class MovieController {
 			consumes = MediaType.APPLICATION_JSON_VALUE)
 	public Movie editMovie(@RequestBody Movie movie) {
 		log.info("I am in editMovie | Controller");
-		log.info(movie.toString());
-		//movieDao.save(movie);
+		Movie m = movieDao.findOne(movie.getId());
+		m.setName(movie.getName());
+		m.setGenre(movie.getGenre());
+		log.info(m);
+		movieDao.save(m);
 
 		return movie;
 	}
