@@ -14,14 +14,9 @@
         <tbody>
             <c:forEach items="${movieList}" var="movie">
                 <tr>
-                    <td>${movie.name}</td>
-                    <td>${movie.genre}</td>
+                    <td class="movie_name">${movie.name}</td>
+                    <td class="movie_genre">${movie.genre}</td>
                     <td>
-                        <%--
-                            <form:form method="DELETE" action="/movie/${movie.id}">
-                                <input type="submit" value="DELETE" class="btn-danger"/>
-                            </form:form>
-                        --%>
                         <a class="btn btn-default" id='DELETE' href="/movie/${movie.id}">DELETE</a>
                         <a class="btn btn-default" id='GET' data-toggle="modal" data-target="#myModal" href="/movie/${movie.id}">EDIT</a>
                     </td>
@@ -43,6 +38,7 @@
     <div class="modal-body">
       <input id="edit_name" type="text" value=""/>
       <input id="edit_genre" type="text" value=""/>
+      <input id="movie_id" type="hidden" value=""/>
     </div>
     <div class="modal-footer">
       <a class="btn btn-default" id='EDIT' data-dismiss="modal" href="movie">Apply</a>
