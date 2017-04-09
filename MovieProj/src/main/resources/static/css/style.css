@@ -70,3 +70,21 @@ body {
     color: #4F8A10;
     background-color: #DFF2BF;
 }
+
+
+/*
+====================== Table highlighted
+*/
+
+@keyframes highlight {
+ 	0% {
+ 		background: #ffff99; /* lovely yellow colour */
+ 	}
+ 	100% {
+ 		background: none;
+ 	}
+}
+
+.highlight {
+    animation: highlight 4s;
+}

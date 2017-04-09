@@ -1,6 +1,8 @@
 package com.mov.controller;
 
 import javax.validation.Valid;
+
+import com.mov.model.MovieIMDB;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +15,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.mov.model.Movie;
 import com.mov.model.MovieDao;
 import java.util.List;
-
+import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.web.client.RestTemplate;
+import org.json.simple.JSONObject;
 import static org.springframework.http.MediaType.TEXT_HTML;
 
 @Controller
@@ -106,13 +110,6 @@ public class MovieController {
 		return movie;
 	}
 
-    @RequestMapping(value = "/search", method = RequestMethod.GET)
-    public ModelAndView searchAMovie() {
-        log.info("I am in search method()");
-        return new ModelAndView("search", "name", new Movie()); // name from model name
-            // corespunde cu <name> din @ModelAttribute de mai jos din /search method
-    }
-
 	@RequestMapping(value = "/search", method = RequestMethod.POST)
 	public ModelAndView search(@Valid @ModelAttribute("name")String name, BindingResult result, Model model) {
 		log.info("I am in the search method functionality");
@@ -124,6 +121,15 @@ public class MovieController {
         model.addAttribute("movieList", results);
 		return new ModelAndView("movies");
 	}
+
+    @RequestMapping(value = "/imdb", method = RequestMethod.POST/*, produces = MediaType.APPLICATION_JSON_VALUE*/)
+    public void imdbIntegration(@Valid @ModelAttribute("title")String title, BindingResult result, Model model) {
+        log.info("I am in imdbIntegration() | controller");
+        log.info("Title: " + title);
+        RestTemplate restTemplate = new RestTemplate();
+        MovieIMDB movie = restTemplate.getForObject("http://www.omdbapi.com/?t=" + title, MovieIMDB.class);
+        log.info(movie.toString());
+    }
 
 	/*	// comentat RequestMethod.GET pentru a putea face debug in browser
 	@RequestMapping(value = "/movie/{name}", method = RequestMethod.GET)

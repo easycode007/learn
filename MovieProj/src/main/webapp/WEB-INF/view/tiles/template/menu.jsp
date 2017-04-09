@@ -5,6 +5,7 @@
        	<li> <a href="/movie"> Add Movie </a> </li>
        	<li> <a href="/movies"> Show Movies </a> </li>
        	<li> <a href="/search"> Search Movies </a> </li>
+       	<li> <a href="/imdbIntegration"> Imdb </a> </li>
        	<li> <a href="/contactus"> Contact Us </a> </li>
 	</ul>
 </nav>

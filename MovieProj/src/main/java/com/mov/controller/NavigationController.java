@@ -1,5 +1,7 @@
 package com.mov.controller;
 
+import com.mov.model.Movie;
+import com.mov.model.MovieIMDB;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
@@ -33,5 +35,18 @@ public class NavigationController {
 	@RequestMapping(value="/contactus", method = RequestMethod.GET)
 	public ModelAndView contactUS() {
 		return new ModelAndView("contactus");
+	}
+
+	@RequestMapping(value = "/search", method = RequestMethod.GET)
+	public ModelAndView searchAMovie() {
+		log.info("I am in search method()");
+		return new ModelAndView("search", "name", new Movie()); // name from model name
+		// corespunde cu <name> din @ModelAttribute de mai jos din /search method
+	}
+
+	@RequestMapping(value="/imdbIntegration", method = RequestMethod.GET)
+	public ModelAndView imdbIntegration() {
+		log.info("imdbIntegration() | controller");
+		return new ModelAndView("imdbIntegration", "title", new MovieIMDB());
 	}
 }

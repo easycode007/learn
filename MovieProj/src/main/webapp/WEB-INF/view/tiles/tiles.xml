@@ -60,4 +60,10 @@
 		<put-attribute name="body" value="/WEB-INF/view/pages/error.jsp" />
 	</definition>
 
+	<!-- Imdb Integration-->
+	<definition name="imdbIntegration" extends="base-definition">
+		<put-attribute name="title" value="IMDB Integration" />
+		<put-attribute name="body" value="/WEB-INF/view/pages/imdbIntegration.jsp" />
+	</definition>
+
 </tiles-definitions>
