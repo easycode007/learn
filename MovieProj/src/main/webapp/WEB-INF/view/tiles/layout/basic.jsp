@@ -20,6 +20,7 @@
 		<script src="/javascript/getMovie.js"></script>
 		<script src="/javascript/addMovie.js"></script>
 		<script src="/javascript/edit.js"></script>
+        <script src="/javascript/imdb.js"></script>
 	</head>
 
 	<body>

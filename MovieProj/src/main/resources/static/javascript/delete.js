@@ -7,12 +7,12 @@ $(document).ready(function() {
             url: $(event.target).attr("href"),
             type: "DELETE",
 
-              beforeSend: function(xhr) {
+            beforeSend: function(xhr) {
                 xhr.setRequestHeader("Accept", "application/json");
                 xhr.setRequestHeader("Content-Type", "application/json");
-              },
+            },
 
-              success: function(movie) {
+            success: function(movie) {
                 console.log(movie);
                 var respContent = "";
                 respContent += "<span id='fromResponse'>Movie was deleted: [";
@@ -23,7 +23,7 @@ $(document).ready(function() {
                 $("#fromResponse").html(respContent);
                 $("a[href='/movie/" + movie.id + "']").closest('tr').remove()
 //                $(this).closest('tr').remove()
-              }
+            }
         });
         event.preventDefault();
     });
