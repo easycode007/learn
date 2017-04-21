@@ -14,6 +14,7 @@
 
 <div id="imdbResults" style="display: none;">
     <img id="poster" src="" alt="MoviePoster" style="width:304px;height:228px;">
+    <a class="btn btn-default" id='addImdbMovie' data-dismiss="modal" href="movie">ADD</a>
     <div id="Title"> <h2> </h2> </div>
     <div id="Year"> <p> </p> </div>
     <div id="Rated"> <p> </p> </div>
