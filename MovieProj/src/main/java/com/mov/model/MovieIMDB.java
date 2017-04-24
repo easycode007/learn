@@ -53,7 +53,6 @@ public class MovieIMDB implements Serializable {
     private String awards; // "N/A"
     @Getter @Setter @JsonProperty("Poster")
     private String poster; // "https://images-na.ssl-images-amazon.com/images/M/MV5BMjI1MjkzMjczMV5BMl5BanBnXkFtZTgwNDk4NjYyMTI@._V1_SX300.jpg"
-
     @Getter @Setter @JsonProperty("Metascore")
     private String metascore; // "77"
     @Getter @Setter @JsonProperty("imdbRating")
