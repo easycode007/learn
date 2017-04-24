@@ -2,7 +2,7 @@ $(document).ready(function() {
     var addImdbMovie = $("a[id='addImdbMovie']");
 
     $(addImdbMovie).click(function(event) {
-		var title = $("#Title h2").val();
+		var title = $("#Title h2").html();
         var year = $("#Year p").text();
         var rated = $("#Rated p").text();
         var released = $("#Released p").text();
@@ -35,7 +35,8 @@ $(document).ready(function() {
 		      production  + " " + website  + " " + poster  + " " +  votes);
 
 */
-        var json = {"title": title,
+        var json = {
+            "Title": title,
             "Year": year,
             "Rated": rated,
             "Released": released,
