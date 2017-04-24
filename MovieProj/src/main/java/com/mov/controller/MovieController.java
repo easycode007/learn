@@ -2,6 +2,7 @@ package com.mov.controller;
 
 import javax.validation.Valid;
 
+import com.mov.model.IMDBMovieDao;
 import com.mov.model.MovieIMDB;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -122,23 +123,6 @@ public class MovieController {
         model.addAttribute("movieList", results);
 		return new ModelAndView("movies");
 	}
-
-    @ResponseBody
-    @RequestMapping(
-            value = "/imdb",
-            method = RequestMethod.POST,
-            produces = MediaType.APPLICATION_JSON_VALUE/*,
-            consumes = MediaType.APPLICATION_JSON_VALUE*/
-    )
-    public MovieIMDB imdbIntegration(@RequestBody JSONObject titleObj/*, BindingResult result, Model model*/) {
-        log.info("I am in imdbIntegration() | controller");
-        String title = titleObj.get("title").toString();
-        log.info("Title: " + title);
-        RestTemplate restTemplate = new RestTemplate();
-        MovieIMDB movie = restTemplate.getForObject("http://www.omdbapi.com/?t=" + title, MovieIMDB.class);
-        log.info(movie.toString());
-        return movie;
-    }
 
 	/*	// comentat RequestMethod.GET pentru a putea face debug in browser
 	@RequestMapping(value = "/movie/{name}", method = RequestMethod.GET)

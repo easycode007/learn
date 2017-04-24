@@ -1,73 +1,85 @@
 $(document).ready(function() {
     var addImdbMovie = $("a[id='addImdbMovie']");
 
-    addImdbMovie.click(function(event) {
-        var title = $("#Title h2").val();
-        var year = $("#Year p").val();
-        var rated = $("#Rated p").val();
-        var released = $("#Released p").val();
-        var runtime = $("#Runtime p").val();
-        var genre = $("#Genre p").val();
-        var director = $("#Director p").val();
-        var writer = $("#Writer p").val();
-        var actors = $("#Actors p").val();
-        var plot = $("#Plot p").val();
-        var language = $("#Language p").val();
-        var country = $("#Country p").val();
-        var awards = $("#Awards p").val();
-        var rating = $("#Ratings p").val();
-        var metascore = $("#Metascore p").val();
-        var imdbRating = $("#imdbRating p").val();
-        var imdbVotes = $("#imdbVotes p").val();
-        var imdbID = $("#imdbID p").val();
-        var type = $("#Type p").val();
-        var dvd = $("#DVD p").val();
-        var boxOffice = $("#BoxOffice p").val();
-        var production = $("#Production p").val();
-        var website = $("#Website p").val();
+    $(addImdbMovie).click(function(event) {
+		var title = $("#Title h2").val();
+        var year = $("#Year p").text();
+        var rated = $("#Rated p").text();
+        var released = $("#Released p").text();
+        var runtime = $("#Runtime p").text();
+        var genre = $("#Genre p").text();
+        var director = $("#Director p").text();
+        var writer = $("#Writer p").text();
+        var actors = $("#Actors p").text();
+        var plot = $("#Plot p").text();
+        var language = $("#Language p").text();
+        var country = $("#Country p").text();
+        var awards = $("#Awards p").text();
+        var metascore = $("#Metascore p").text();
+        var imdbRating = $("#imdbRating p").text();
+        var imdbVotes = $("#imdbVotes p").text();
+        var imdbID = $("#imdbID p").text();
+        var type = $("#Type p").text();
+        var dvd = $("#DVD p").text();
+        var boxOffice = $("#BoxOffice p").text();
+        var production = $("#Production p").text();
+        var website = $("#Website p").text();
+		var poster = $("poster").attr("src");
+		var votes = $("Votes p").text();
 
-        var json = {
-            "title": title,
-            "year": year,
-            "rated": rated,
-            "released": released,
-            "runtime": runtime,
-            "genre": genre,
-            "director": director,
-            "writer": writer,
-            "actors": actors,
-            "plot": plot,
-            "language": language,
-            "country": country,
-            "awards": awards,
-            "rating": rating,
-            "metascore": metascore,
+/*
+		console.log(title + " " + year + " " + rated + " " + released + " " + runtime
+		    + " " + genre + " " + director + " " + writer + " " +actors + " " +  plot  + " " + language
+		     + " " + language  + " " + country  + " " + awards  + " " + metascore  + " " + imdbRating
+		      + " " +  imdbVotes  + " " + imdbID  + " " + type  + " " + dvd  + " " + boxOffice  + " " +
+		      production  + " " + website  + " " + poster  + " " +  votes);
+
+*/
+        var json = {"title": title,
+            "Year": year,
+            "Rated": rated,
+            "Released": released,
+            "Runtime": runtime,
+            "Genre": genre,
+            "Director": director,
+            "Writer": writer,
+            "Actors": actors,
+            "Plot": plot,
+            "Language": language,
+            "Country": country,
+            "Awards": awards,
+			"Poster": poster,
+            "Metascore": metascore,
             "imdbRating": imdbRating,
             "imdbVotes": imdbVotes,
             "imdbID": imdbID,
-            "type": type,
-            "dvd": dvd,
-            "boxOffice": boxOffice,
-            "production": production,
-            "website": website
+            "Type": type,
+            "DVD": dvd,
+            "BoxOffice": boxOffice,
+            "Production": production,
+            "Website": website,
+			"Votes": votes
         };
 
-        $.ajax({
+//        console.log("OBJECT:" + JSON.stringify(json));
+
+		$.ajax({
             url: $(event.target).attr("href"),
             data: JSON.stringify(json),
-            type: POST,
-
-            beforeSend: function(xhr) {
-                xhr.setRequestHeader("Accept", "application/json");
-                xhr.setRequestHeader("Content-Type", "application/json");
+            type: "POST",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
             },
 
             success: function(movie) {
                 console.log("Movie added successfully");
+                console.log(movie);
                 var respContent = "";
                     respContent += "<div class='success'><span>Well done! </span>Movie was added.</div>"
-                    $("#movieAdded").html(respContent);
+                    $("#imdbMovieAdded").html(respContent);
             }
-        })
+        });
+		event.preventDefault();
     });
 });

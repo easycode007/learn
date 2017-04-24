@@ -19,6 +19,7 @@
 		<script src="/javascript/delete.js"></script>
 		<script src="/javascript/getMovie.js"></script>
 		<script src="/javascript/addMovie.js"></script>
+		<script src="/javascript/addImdbMovie.js"></script>
 		<script src="/javascript/edit.js"></script>
         <script src="/javascript/imdb.js"></script>
 	</head>

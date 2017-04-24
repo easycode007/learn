@@ -8,20 +8,25 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by Razvan on 08.04.2017.
  */
-//@Entity
-//@Table(name = "movies")
+@Entity
+@Table(name = "imdbmovies")
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class MovieIMDB implements Serializable {
+
+    // An auto generated id (unique for each user in the db)
+    @Id
+    @Getter	@Setter	@GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+
     @Getter @Setter @JsonProperty("Title")
     private String title; // "Logan"
     @Getter @Setter @JsonProperty("Year")
@@ -42,16 +47,13 @@ public class MovieIMDB implements Serializable {
     private String actors; // "Hugh Jackman, Patrick Stewart, Dafne Keen, Boyd Holbrook"
     @Getter @Setter @JsonProperty("Plot")
     private String plot; // In the near future, a weary Logan cares for an ailing Professor X ...
-    @Getter @Setter @JsonProperty("Language")
-    private String language; // "English, Spanish"
     @Getter @Setter @JsonProperty("Country")
     private String country; // "USA"
     @Getter @Setter @JsonProperty("Awards")
     private String awards; // "N/A"
     @Getter @Setter @JsonProperty("Poster")
     private String poster; // "https://images-na.ssl-images-amazon.com/images/M/MV5BMjI1MjkzMjczMV5BMl5BanBnXkFtZTgwNDk4NjYyMTI@._V1_SX300.jpg"
-    @Getter @Setter @JsonProperty("Ratings")
-    private ArrayList<Rating> ratings;
+
     @Getter @Setter @JsonProperty("Metascore")
     private String metascore; // "77"
     @Getter @Setter @JsonProperty("imdbRating")
@@ -70,8 +72,10 @@ public class MovieIMDB implements Serializable {
     private String production; // "20th Century Fox"
     @Getter @Setter @JsonProperty("Website")
     private String website; // "http://www.foxmovies.com/movies/logan"
-    @Getter @Setter @JsonProperty("Response")
-    private String response; // "True"
+    @Getter @Setter @JsonProperty("votes")
+    private String votes;
+    @Getter @Setter @JsonProperty("Language")
+    private String language; // "English, Spanish"
 
     @Override
     public String toString() {

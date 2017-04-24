@@ -14,10 +14,12 @@
 
 <div id="imdbResults" style="display: none;">
     <img id="poster" src="" alt="MoviePoster" style="width:304px;height:228px;">
-    <a class="btn btn-default" id='addImdbMovie' data-dismiss="modal" href="movie">ADD</a>
+    <a class="btn btn-default" id='addImdbMovie' data-dismiss="modal" href="imdbmovie">ADD</a>
+    <div id="imdbMovieAdded"></div>
     <div id="Title"> <h2> </h2> </div>
     <div id="Year"> <p> </p> </div>
     <div id="Rated"> <p> </p> </div>
+    <div id="Votes"> <p> </p> </div>
     <div id="Released"> <p> </p> </div>
     <div id="Runtime"> <p> </p> </div>
     <div id="Genre"> <p> </p> </div>
@@ -28,7 +30,6 @@
     <div id="Language"> <p> </p> </div>
     <div id="Country"> <p> </p> </div>
     <div id="Awards"> <p> </p> </div>
-    <div id="Ratings"> <p> </p> </div>
     <div id="Metascore"> <p> </p> </div>
     <div id="imdbRating"> <p> </p> </div>
     <div id="imdbVotes"> <p> </p> </div>
@@ -38,5 +39,4 @@
     <div id="BoxOffice"> <p> </p> </div>
     <div id="Production"> <p> </p> </div>
     <div id="Website"> <p> </p> </div>
-    <div id="Response"> <p> </p> </div>
 </div>
