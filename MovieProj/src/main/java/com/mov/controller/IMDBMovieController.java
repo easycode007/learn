@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by rastan on 4/24/2017.
  */
@@ -24,6 +27,12 @@ public class IMDBMovieController {
     @Autowired
     private IMDBMovieDao imdbMovieDao;
 
+
+    private List<String> movieTitles;
+
+    private void loadMovieTitles() {
+        movieTitles = new ArrayList<>();
+    }
 
     @ResponseBody
     @RequestMapping(
