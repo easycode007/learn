@@ -16,7 +16,7 @@ $(document).ready(function() {
             success: function(movie) {
                 console.log(movie);
                 $("#imdbResults").show();
-                $("#poster").attr('src', movie.Poster);
+/*                $("#poster").attr('src', movie.Poster);
                 $("#Title h2").html(movie.Title);
                 $("#Year p").html(movie.Year);
                 $("#Rated p").html(movie.Rated);
@@ -40,7 +40,31 @@ $(document).ready(function() {
                 $("#BoxOffice p").html(movie.BoxOffice);
                 $("#Production p").html(movie.Production);
                 $("#Website p").html(movie.Website);
-                $("#Response p").html(movie.Response);
+                $("#Response p").html(movie.Response);*/
+
+                $("#poster").attr('src', movie.Poster);
+                $("#Title").text(movie.Title);
+                $("#Year span").text(movie.Year);
+                $("#Rated").html(movie.Rated);
+                $("#Released").html(movie.Released);
+                $("#Runtime").html(movie.Runtime);
+                $("#Genre").text(movie.Genre);
+                $("#Director span").html(movie.Director);
+                $("#Writer span").text(movie.Writer);
+                $("#Actors span").html(movie.Actors);
+                $("#Plot").html(movie.Plot);
+                $("#Awards span").html(movie.Awards);
+                $("#imdbRating span").html(movie.imdbRating);
+                $("#Metascore span").html(movie.Metascore);
+                $("#imdbVotes").html(movie.imdbVotes);
+                $("#Language span").html(movie.Language);
+                $("#Country span").html(movie.Country);
+                $("#imdbID span").html(movie.imdbID);
+                $("DVD span").html(movie.DVD);
+                $("#BoxOffice span").html(movie.BoxOffice);
+                $("#Production span").html(movie.Production);
+                $("#Website a").html(movie.Website)
+                $("#Type span").html(movie.Type);
             }
         });
         event.preventDefault();
