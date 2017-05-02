@@ -101,7 +101,7 @@ $(document).ready(function() {
                 console.log("Movie added successfully");
                 console.log(movie);
                 var respContent = "";
-                    respContent += "<div class='success'><span>Well done! </span>Movie was added.</div>"
+                    respContent += "<div class='success'><span>Well done! </span>" + movie.Title +" was added.</div>"
                     $("#imdbMovieAdded").html(respContent);
             }
         });

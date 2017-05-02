@@ -17,7 +17,7 @@ $(document).ready(function() {
         },
         success: function(movie) {
             var respContent = "";
-            respContent += "<div class='success'><span>Well done! </span>Movie was added.</div>"
+            respContent += "<div class='success'><span>Well done! </span>" + movie.name + "was added.</div>"
             $("#movieAdded").html(respContent);
         }
     });
