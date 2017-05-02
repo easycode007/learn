@@ -14,6 +14,8 @@
 
 <div id="imdbResults" style="display: none;">
     <div class="container">
+        <a class="btn btn-default" id='addImdbMovie' data-toggle="modal" data-target="#myModal" href="imdbmovie">ADD MOVIE</a>
+        <div id="imdbMovieAdded"></div>
         <div class="row">
             <div class="col-sm-8"></div>
             <br>

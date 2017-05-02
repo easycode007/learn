@@ -91,12 +91,6 @@ body {
     animation: highlight 4s;
 }
 
-
-#addImdbMovie {
-    margin-top: -196px;
-    margin-left: 10px;
-}
-
 #imdbMovieAdded {
 
 }

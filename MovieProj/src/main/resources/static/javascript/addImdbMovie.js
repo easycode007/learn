@@ -2,7 +2,7 @@ $(document).ready(function() {
     var addImdbMovie = $("a[id='addImdbMovie']");
 
     $(addImdbMovie).click(function(event) {
-		var title = $("#Title h2").html();
+/*		var title = $("#Title h2").html();
         var year = $("#Year p").text();
         var rated = $("#Rated p").text();
         var released = $("#Released p").text();
@@ -25,7 +25,31 @@ $(document).ready(function() {
         var production = $("#Production p").text();
         var website = $("#Website p").text();
 		var poster = $("poster").attr("src");
-		var votes = $("Votes p").text();
+		var votes = $("Votes p").text();*/
+
+        var title = $("#Title").html();
+        var year = $("#Year span").html();
+        var rated = $("#Rated").html();
+        var released = $("#Released").html();
+        var runtime = $("#Runtime").html();
+        var genre = $("#Genre").html();
+        var director = $("#Director span").html();
+        var writer = $("#Writer span").html();
+        var actors = $("#Actors span").html();
+        var plot = $("#Plot").html();
+        var awards = $("#Awards span").html();
+        var imdbRating = $("#imdbRating span").html();
+        var metascore = $("#Metascore span").html();
+        var imdbVotes = $("#imdbVotes").html();
+        var language = $("#Language span").html();
+        var country = $("#Country span").html();
+        var imdbID = $("#imdbID span").html();
+        var dvd = $("DVD span").html();
+        var boxOffice = $("#BoxOffice span").html();
+        var production = $("#Production span").html();
+        var website = $("#Website a").html()
+        var type = $("#Type span").html();
+        var poster = $("poster").attr("src");
 
 /*
 		console.log(title + " " + year + " " + rated + " " + released + " " + runtime
@@ -58,8 +82,8 @@ $(document).ready(function() {
             "DVD": dvd,
             "BoxOffice": boxOffice,
             "Production": production,
-            "Website": website,
-			"Votes": votes
+            "Website": website/*,
+			"Votes": votes*/
         };
 
 //        console.log("OBJECT:" + JSON.stringify(json));
