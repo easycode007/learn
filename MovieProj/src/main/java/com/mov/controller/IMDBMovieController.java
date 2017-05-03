@@ -30,38 +30,5 @@ public class IMDBMovieController {
 
     private List<String> movieTitles;
 
-    private void loadMovieTitles() {
-        movieTitles = new ArrayList<>();
-    }
 
-    @ResponseBody
-    @RequestMapping(
-            value = "/imdbmovie",
-            method = RequestMethod.POST,
-            produces = MediaType.APPLICATION_JSON_VALUE,
-            consumes = MediaType.APPLICATION_JSON_VALUE
-    )
-    public MovieIMDB addIMDBMovie(@RequestBody MovieIMDB movie) {
-        log.info("Saving imdb movie | controller");
-        log.info("---> MOVIE: " + movie);
-        imdbMovieDao.save(movie);
-        return movie;
-    }
-
-
-    @ResponseBody
-    @RequestMapping(
-            value = "/imdb",
-            method = RequestMethod.POST,
-            produces = MediaType.APPLICATION_JSON_VALUE
-    )
-    public MovieIMDB imdbIntegration(@RequestBody JSONObject titleObj) {
-        log.info("I am in imdbIntegration() | controller");
-        String title = titleObj.get("title").toString();
-        log.info("Title: " + title);
-        RestTemplate restTemplate = new RestTemplate();
-        MovieIMDB movie = restTemplate.getForObject("http://www.omdbapi.com/?t=" + title, MovieIMDB.class);
-        log.info(movie.toString());
-        return movie;
-    }
 }

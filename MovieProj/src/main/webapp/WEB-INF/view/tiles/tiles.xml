@@ -18,13 +18,13 @@
 		<put-attribute name="body" value="/WEB-INF/view/pages/home.jsp" />
 	</definition>
 
-	<!-- Movie Page -->
-	<definition name="movie" extends="base-definition">
+	<!-- SimpleMovie Page -->
+	<definition name="simpleMovie" extends="base-definition">
 		<put-attribute name="title" value="Movie Form" />
 		<put-attribute name="body" value="/WEB-INF/view/pages/movieForm.jsp" />
 	</definition>
 
-	<!-- Movie View results -->
+	<!-- SimpleMovie View results -->
 	<definition name="movies" extends="base-definition">
 		<put-attribute name="title" value="Movies" />
 		<put-attribute name="body" value="/WEB-INF/view/pages/movies.jsp" />
@@ -36,19 +36,19 @@
 		<put-attribute name="body" value="/WEB-INF/view/pages/contactus.jsp" />
 	</definition>
 
-	<!-- Movie successfully added -->
+	<!-- SimpleMovie successfully added -->
 	<definition name="success" extends="base-definition">
 		<put-attribute name="title" value="Movie successfully added" />
 		<put-attribute name="body" value="/WEB-INF/view/pages/success.jsp" />
 	</definition>
 
-	<!-- Search a movie -->
+	<!-- Search a simpleMovie -->
 	<definition name="search" extends="base-definition">
-		<put-attribute name="title" value="Search a movie" />
+		<put-attribute name="title" value="Search a simpleMovie" />
 		<put-attribute name="body" value="/WEB-INF/view/pages/search.jsp" />
 	</definition>
 
-	<!-- Done deleting a movie -->
+	<!-- Done deleting a simpleMovie -->
 	<definition name="doneDeleting" extends="base-definition">
 		<put-attribute name="title" value="Done deleting" />
 		<put-attribute name="body" value="/WEB-INF/view/pages/doneDeleting.jsp" />

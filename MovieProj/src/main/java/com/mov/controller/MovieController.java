@@ -2,24 +2,22 @@ package com.mov.controller;
 
 import javax.validation.Valid;
 
-import com.mov.model.IMDBMovieDao;
+import com.mov.model.Movie;
 import com.mov.model.MovieIMDB;
+import com.mov.model.SimpleMovie;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
-import com.mov.model.Movie;
 import com.mov.model.MovieDao;
 import java.util.List;
-import org.springframework.boot.web.client.RestTemplateBuilder;
-import org.springframework.web.client.RestTemplate;
-import org.json.simple.JSONObject;
-import static org.springframework.http.MediaType.TEXT_HTML;
 
 @Controller
 public class MovieController {
@@ -29,21 +27,21 @@ public class MovieController {
 	private MovieDao movieDao;
 
 	@RequestMapping(
-			value = "/movie",
+			value = "/simpleMovie",
 			method = RequestMethod.POST,
 			produces = MediaType.APPLICATION_JSON_VALUE,
 			consumes = MediaType.APPLICATION_JSON_VALUE
 	)
 	@ResponseBody
-	public Movie addMovie(@RequestBody Movie movie) {
-		if(existsInDb(movie)) {
+	public SimpleMovie addMovie(@RequestBody SimpleMovie simpleMovie) {
+		if(existsInDb(simpleMovie)) {
 			return null;
 		}
-		movieDao.save(movie);
-		return movie;
+		movieDao.save(simpleMovie);
+		return simpleMovie;
 	}
 
-	public boolean existsInDb(Movie movie) {
+	public boolean existsInDb(SimpleMovie movie) {
 		List<Movie> movies = (List<Movie>) movieDao.findAll();
 		for(Movie m: movies) {
 			if(m.getName().equals(movie.getName()) && m.getGenre().equals(movie.getGenre())) {
@@ -56,13 +54,13 @@ public class MovieController {
 	@RequestMapping(value="/movie", method = RequestMethod.GET)
 	public ModelAndView showForm() {
 		log.info("I am in showForm() method!!!");
-		return new ModelAndView("movie", "movie", new Movie()); // view | model | obiectul din model
+		return new ModelAndView("movie", "movie", new SimpleMovie()); // view | model | obiectul din model
 	}
 
 	
 	@RequestMapping(value="/movies", method = RequestMethod.GET)
 	public ModelAndView listMovies(Model model) {
-	    List<Movie> movies = (List<Movie>) movieDao.findAll();
+	    List<SimpleMovie> movies = (List<SimpleMovie>) movieDao.findAll();
         model.addAttribute("movieList", movies);
 		return new ModelAndView("movies");
 	}
@@ -71,13 +69,13 @@ public class MovieController {
 	@RequestMapping(value = "/movie/{id}", method = RequestMethod.DELETE,
 			produces = MediaType.APPLICATION_JSON_VALUE,
 			consumes = MediaType.APPLICATION_JSON_VALUE)
-	public Movie deleteMovie(@PathVariable("id") long id) {
+	public SimpleMovie deleteMovie(@PathVariable("id") long id) {
 		log.info("I am in delete controller()");
 		if(movieDao.exists(id)) {
-			Movie movie = movieDao.findOne(id);
-			log.info(movie.toString());
+			SimpleMovie simpleMovie = movieDao.findOne(id);
+			log.info(simpleMovie.toString());
 			movieDao.delete(id);
-			return movie;
+			return simpleMovie;
 		}
 		return null;
 	}
@@ -87,29 +85,29 @@ public class MovieController {
             method = RequestMethod.GET,
 			produces = MediaType.APPLICATION_JSON_VALUE,
 			consumes = MediaType.APPLICATION_JSON_VALUE)
-	public Movie getAMovie(@PathVariable("id") long id) {
+	public SimpleMovie getAMovie(@PathVariable("id") long id) {
 		log.info("I am in getMovie | Controller");
 		if(movieDao.exists(id)) {
-			Movie movie = movieDao.findOne(id);
-			log.info(movie.toString());
-			return movie;
+			SimpleMovie simpleMovie = movieDao.findOne(id);
+			log.info(simpleMovie.toString());
+			return simpleMovie;
 		}
 		return null;
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/movie",
+	@RequestMapping(value = "/simpleMovie",
 			method = RequestMethod.PUT,
 			produces = MediaType.APPLICATION_JSON_VALUE,
 			consumes = MediaType.APPLICATION_JSON_VALUE)
-	public Movie editMovie(@RequestBody Movie movie) {
+	public SimpleMovie editMovie(@RequestBody SimpleMovie simpleMovie) {
 		log.info("I am in editMovie | Controller");
-		Movie m = movieDao.findOne(movie.getId());
-		m.setName(movie.getName());
-		m.setGenre(movie.getGenre());
+		SimpleMovie m = movieDao.findOne(simpleMovie.getId());
+		m.setName(simpleMovie.getName());
+		m.setGenre(simpleMovie.getGenre());
 		log.info(m);
 		movieDao.save(m);
-		return movie;
+		return simpleMovie;
 	}
 
 	@RequestMapping(value = "/search", method = RequestMethod.POST)
@@ -119,7 +117,7 @@ public class MovieController {
 			model.addAttribute("msg", result.getAllErrors().toString());
 			return new ModelAndView("error");
 		}
-		List<Movie> results = movieDao.findByName(name);
+		List<SimpleMovie> results = movieDao.findByName(name);
         model.addAttribute("movieList", results);
 		return new ModelAndView("movies");
 	}
@@ -127,7 +125,7 @@ public class MovieController {
 	/*	// comentat RequestMethod.GET pentru a putea face debug in browser
 	@RequestMapping(value = "/movie/{name}", method = RequestMethod.GET)
 	public ModelAndView getMovie(Model model, @PathVariable("name") String name) {
-		Movie movie = movieDao.findOne(name);
+		SimpleMovie movie = movieDao.findOne(name);
 		model.addAttribute("name", movie.getName());
 		model.addAttribute("genre", movie.getGenre());
 		return new ModelAndView("success");
@@ -137,7 +135,7 @@ public class MovieController {
 //	// comentat RequestMethod.GET pentru a putea face debug in browser
 //	@RequestMapping(value = "/movie/{id}", method = RequestMethod.GET)
 //	public ModelAndView getMovie(Model model, @PathVariable("id") long id) {
-//		Movie movie = movieDao.findOne(id);
+//		SimpleMovie movie = movieDao.findOne(id);
 //		model.addAttribute("name", movie.getName());
 //		model.addAttribute("genre", movie.getGenre());
 //		return new ModelAndView("success");
@@ -150,7 +148,7 @@ public class MovieController {
 //			produces = MediaType.APPLICATION_JSON_VALUE,
 //			consumes = MediaType.APPLICATION_JSON_VALUE
 //	)
-//	public Movie submit(@Valid @ModelAttribute("movie")Movie movie, BindingResult result, Model model) {
+//	public SimpleMovie submit(@Valid @ModelAttribute("movie")SimpleMovie movie, BindingResult result, Model model) {
 //		log.info("I am in the submit form");
 //		if(result.hasErrors()) {
 ////			model.addAttribute("msg", result.getAllErrors().toString());
@@ -158,9 +156,9 @@ public class MovieController {
 //		}
 //		try {
 //			if (existsInDb(movie)) {
-////				model.addAttribute("error", "This Movie exists in DB");
-//				log.info("This Movie exists in DB:  ");
-////				return new ModelAndView("error", "msg", "This Movie exists in DB");
+////				model.addAttribute("error", "This SimpleMovie exists in DB");
+//				log.info("This SimpleMovie exists in DB:  ");
+////				return new ModelAndView("error", "msg", "This SimpleMovie exists in DB");
 //			}
 //			movieDao.save(movie);
 //		} catch (Exception e) {
@@ -173,5 +171,35 @@ public class MovieController {
 //        return movie;
 //	}
 
+	@ResponseBody
+	@RequestMapping(
+			value = "/imdbmovie",
+			method = RequestMethod.POST,
+			produces = MediaType.APPLICATION_JSON_VALUE,
+			consumes = MediaType.APPLICATION_JSON_VALUE
+	)
+	public MovieIMDB addIMDBMovie(@RequestBody MovieIMDB movie) {
+		log.info("Saving imdb movie | controller");
+		log.info("---> MOVIE: " + movie);
+		movieDao.save(movie);
+		return movie;
+	}
+
+
+	@ResponseBody
+	@RequestMapping(
+			value = "/imdb",
+			method = RequestMethod.POST,
+			produces = MediaType.APPLICATION_JSON_VALUE
+	)
+	public MovieIMDB imdbIntegration(@RequestBody JSONObject titleObj) {
+		log.info("I am in imdbIntegration() | controller");
+		String title = titleObj.get("title").toString();
+		log.info("Title: " + title);
+		RestTemplate restTemplate = new RestTemplate();
+		MovieIMDB movie = restTemplate.getForObject("http://www.omdbapi.com/?t=" + title, MovieIMDB.class);
+		log.info(movie.toString());
+		return movie;
+	}
 
 }

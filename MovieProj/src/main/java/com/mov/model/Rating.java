@@ -9,7 +9,7 @@ import lombok.Setter;
  */
 public class Rating {
     @Getter@Setter @JsonProperty("Source")
-    private String source; // "Internet Movie Database"
+    private String source; // "Internet SimpleMovie Database"
     @Getter @Setter @JsonProperty("Value")
     private String value; // "8.5/10"
 }
