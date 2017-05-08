@@ -10,10 +10,9 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
-@Entity(name="SimpleMovie")
-@DiscriminatorValue("SimpleMovie")
+@Entity
+@DiscriminatorValue("simpleMovie")
 @AllArgsConstructor
-@NoArgsConstructor
 public class SimpleMovie extends Movie {
 	@Override
 	public String toString() {

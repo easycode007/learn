@@ -82,7 +82,8 @@ $(document).ready(function() {
             "DVD": dvd,
             "BoxOffice": boxOffice,
             "Production": production,
-            "Website": website/*,
+            "Website": website,
+            "discriminator": "imdbMovie"/*,
 			"Votes": votes*/
         };
 

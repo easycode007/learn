@@ -3,7 +3,7 @@ package com.mov.controller;
 import javax.validation.Valid;
 
 import com.mov.model.Movie;
-import com.mov.model.MovieIMDB;
+import com.mov.model.IMDBMovie;
 import com.mov.model.SimpleMovie;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -27,7 +27,7 @@ public class MovieController {
 	private MovieDao movieDao;
 
 	@RequestMapping(
-			value = "/simpleMovie",
+			value = "/movie",
 			method = RequestMethod.POST,
 			produces = MediaType.APPLICATION_JSON_VALUE,
 			consumes = MediaType.APPLICATION_JSON_VALUE
@@ -44,7 +44,7 @@ public class MovieController {
 	public boolean existsInDb(SimpleMovie movie) {
 		List<Movie> movies = (List<Movie>) movieDao.findAll();
 		for(Movie m: movies) {
-			if(m.getName().equals(movie.getName()) && m.getGenre().equals(movie.getGenre())) {
+			if(m.getTitle().equals(movie.getTitle()) && m.getGenre().equals(movie.getGenre())) {
 				return true;
 			}
 		}
@@ -60,7 +60,7 @@ public class MovieController {
 	
 	@RequestMapping(value="/movies", method = RequestMethod.GET)
 	public ModelAndView listMovies(Model model) {
-	    List<SimpleMovie> movies = (List<SimpleMovie>) movieDao.findAll();
+	    List<Movie> movies = (List<Movie>) movieDao.findAll();
         model.addAttribute("movieList", movies);
 		return new ModelAndView("movies");
 	}
@@ -69,10 +69,10 @@ public class MovieController {
 	@RequestMapping(value = "/movie/{id}", method = RequestMethod.DELETE,
 			produces = MediaType.APPLICATION_JSON_VALUE,
 			consumes = MediaType.APPLICATION_JSON_VALUE)
-	public SimpleMovie deleteMovie(@PathVariable("id") long id) {
+	public Movie deleteMovie(@PathVariable("id") long id) {
 		log.info("I am in delete controller()");
 		if(movieDao.exists(id)) {
-			SimpleMovie simpleMovie = movieDao.findOne(id);
+			Movie simpleMovie = movieDao.findOne(id);
 			log.info(simpleMovie.toString());
 			movieDao.delete(id);
 			return simpleMovie;
@@ -85,10 +85,10 @@ public class MovieController {
             method = RequestMethod.GET,
 			produces = MediaType.APPLICATION_JSON_VALUE,
 			consumes = MediaType.APPLICATION_JSON_VALUE)
-	public SimpleMovie getAMovie(@PathVariable("id") long id) {
+	public Movie getAMovie(@PathVariable("id") long id) {
 		log.info("I am in getMovie | Controller");
 		if(movieDao.exists(id)) {
-			SimpleMovie simpleMovie = movieDao.findOne(id);
+			Movie simpleMovie = movieDao.findOne(id);
 			log.info(simpleMovie.toString());
 			return simpleMovie;
 		}
@@ -100,10 +100,10 @@ public class MovieController {
 			method = RequestMethod.PUT,
 			produces = MediaType.APPLICATION_JSON_VALUE,
 			consumes = MediaType.APPLICATION_JSON_VALUE)
-	public SimpleMovie editMovie(@RequestBody SimpleMovie simpleMovie) {
+	public Movie editMovie(@RequestBody SimpleMovie simpleMovie) {
 		log.info("I am in editMovie | Controller");
-		SimpleMovie m = movieDao.findOne(simpleMovie.getId());
-		m.setName(simpleMovie.getName());
+		Movie m = movieDao.findOne(simpleMovie.getId());
+		m.setTitle(simpleMovie.getTitle());
 		m.setGenre(simpleMovie.getGenre());
 		log.info(m);
 		movieDao.save(m);
@@ -117,7 +117,7 @@ public class MovieController {
 			model.addAttribute("msg", result.getAllErrors().toString());
 			return new ModelAndView("error");
 		}
-		List<SimpleMovie> results = movieDao.findByName(name);
+		List<Movie> results = movieDao.findByTitle(name);
         model.addAttribute("movieList", results);
 		return new ModelAndView("movies");
 	}
@@ -178,7 +178,7 @@ public class MovieController {
 			produces = MediaType.APPLICATION_JSON_VALUE,
 			consumes = MediaType.APPLICATION_JSON_VALUE
 	)
-	public MovieIMDB addIMDBMovie(@RequestBody MovieIMDB movie) {
+	public Movie addIMDBMovie(@RequestBody Movie movie) {
 		log.info("Saving imdb movie | controller");
 		log.info("---> MOVIE: " + movie);
 		movieDao.save(movie);
@@ -192,12 +192,12 @@ public class MovieController {
 			method = RequestMethod.POST,
 			produces = MediaType.APPLICATION_JSON_VALUE
 	)
-	public MovieIMDB imdbIntegration(@RequestBody JSONObject titleObj) {
+	public IMDBMovie imdbIntegration(@RequestBody JSONObject titleObj) {
 		log.info("I am in imdbIntegration() | controller");
 		String title = titleObj.get("title").toString();
 		log.info("Title: " + title);
 		RestTemplate restTemplate = new RestTemplate();
-		MovieIMDB movie = restTemplate.getForObject("http://www.omdbapi.com/?t=" + title, MovieIMDB.class);
+		IMDBMovie movie = restTemplate.getForObject("http://www.omdbapi.com/?t=" + title, IMDBMovie.class);
 		log.info(movie.toString());
 		return movie;
 	}

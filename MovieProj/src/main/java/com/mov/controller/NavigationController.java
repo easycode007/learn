@@ -1,7 +1,7 @@
 package com.mov.controller;
 
 import com.mov.model.SimpleMovie;
-import com.mov.model.MovieIMDB;
+import com.mov.model.IMDBMovie;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
@@ -47,6 +47,6 @@ public class NavigationController {
 	@RequestMapping(value="/imdbIntegration", method = RequestMethod.GET)
 	public ModelAndView imdbIntegration() {
 		log.info("imdbIntegration() | controller");
-		return new ModelAndView("imdbIntegration", "title", new MovieIMDB());
+		return new ModelAndView("imdbIntegration", "title", new IMDBMovie());
 	}
 }

@@ -4,7 +4,7 @@ $(document).ready(function() {
 
       var name = $('#name').val();
       var genre = $('#genre').val();
-      var json = { "name" : name, "genre" : genre};
+      var json = { "name" : name, "genre" : genre, "discriminator": "simpleMovie"};
 
     $.ajax({
         url: $("#addMovieForm").attr("action"),

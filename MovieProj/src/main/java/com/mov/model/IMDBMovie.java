@@ -15,12 +15,12 @@ import java.util.ArrayList;
 /**
  * Created by Razvan on 08.04.2017.
  */
-@Entity(name="MovieImdb")
+@Entity
 @DiscriminatorValue("imdbMovie")
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class MovieIMDB implements Serializable {
+public class IMDBMovie extends Movie implements Serializable {
 
 //    // An auto generated id (unique for each user in the db)
 //    @Id
@@ -29,6 +29,8 @@ public class MovieIMDB implements Serializable {
 //
 //    @Getter @Setter @JsonProperty("Title")
 //    private String title; // "Logan"
+//    @Getter @Setter @JsonProperty("Genre")
+//    private String genre; // "Action, Drama, Sci-Fi"
     @Getter @Setter @JsonProperty("Year") @Column
     private String year; // "2017"
     @Getter @Setter @JsonProperty("Rated") @Column
@@ -37,8 +39,6 @@ public class MovieIMDB implements Serializable {
     private String released; // "03 Mar 2017"
     @Getter @Setter @JsonProperty("Runtime") @Column
     private String runtime; // 137 min
-//    @Getter @Setter @JsonProperty("Genre")
-//    private String genre; // "Action, Drama, Sci-Fi"
     @Getter @Setter @JsonProperty("Director") @Column
     private String director; // "James Mangold"
     @Getter @Setter @JsonProperty("Writer") @Column

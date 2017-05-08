@@ -8,6 +8,6 @@ import java.util.List;
 @Transactional
 public interface MovieDao extends CrudRepository<Movie, Long>  {
 
-	public List<SimpleMovie> findByName(String name);
+	public List<Movie> findByTitle(String title);
 
 }
