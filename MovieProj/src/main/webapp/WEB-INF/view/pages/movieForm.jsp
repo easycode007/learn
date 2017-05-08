@@ -1,9 +1,9 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<form:form id="addMovieForm" method="POST" action="/movie" modelAttribute="movie">
+<form:form id="addMovieForm" method="POST" action="/movie" modelAttribute="SimpleMovie">
 	<table>
 		<tr>
-			<td><form:label path="name">Name</form:label></td>
-			<td><form:input path="name" class="form-control"/></td>
+			<td><form:label path="title">Name</form:label></td>
+			<td><form:input path="title" class="form-control"/></td>
 		</tr>
 		<tr>
 			<td><form:label path="genre">Genre</form:label></td>

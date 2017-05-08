@@ -8,6 +8,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "movies")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "discriminator")
 public abstract class Movie {
@@ -18,9 +19,9 @@ public abstract class Movie {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Getter @Setter @JsonProperty("Title")
+    @Getter @Setter @JsonProperty("Title") @Column
     private String title; // "Logan"
 
-    @Getter @Setter @JsonProperty("Genre")
+    @Getter @Setter @JsonProperty("Genre") @Column
     private String genre; // "Action, Drama, Sci-Fi"
 }

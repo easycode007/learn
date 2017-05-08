@@ -16,7 +16,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
-import com.mov.model.MovieDao;
+import com.mov.dao.MovieDao;
 import java.util.List;
 
 @Controller
@@ -34,9 +34,11 @@ public class MovieController {
 	)
 	@ResponseBody
 	public SimpleMovie addMovie(@RequestBody SimpleMovie simpleMovie) {
+		log.info("I am in addMovie() method !!!!");
 		if(existsInDb(simpleMovie)) {
 			return null;
 		}
+		log.info("----------> MOVIE: " + simpleMovie);
 		movieDao.save(simpleMovie);
 		return simpleMovie;
 	}
@@ -54,7 +56,7 @@ public class MovieController {
 	@RequestMapping(value="/movie", method = RequestMethod.GET)
 	public ModelAndView showForm() {
 		log.info("I am in showForm() method!!!");
-		return new ModelAndView("movie", "movie", new SimpleMovie()); // view | model | obiectul din model
+		return new ModelAndView("movie", "SimpleMovie", new SimpleMovie()); // view | model | obiectul din model
 	}
 
 	
@@ -122,55 +124,6 @@ public class MovieController {
 		return new ModelAndView("movies");
 	}
 
-	/*	// comentat RequestMethod.GET pentru a putea face debug in browser
-	@RequestMapping(value = "/movie/{name}", method = RequestMethod.GET)
-	public ModelAndView getMovie(Model model, @PathVariable("name") String name) {
-		SimpleMovie movie = movieDao.findOne(name);
-		model.addAttribute("name", movie.getName());
-		model.addAttribute("genre", movie.getGenre());
-		return new ModelAndView("success");
-	}*/
-
-
-//	// comentat RequestMethod.GET pentru a putea face debug in browser
-//	@RequestMapping(value = "/movie/{id}", method = RequestMethod.GET)
-//	public ModelAndView getMovie(Model model, @PathVariable("id") long id) {
-//		SimpleMovie movie = movieDao.findOne(id);
-//		model.addAttribute("name", movie.getName());
-//		model.addAttribute("genre", movie.getGenre());
-//		return new ModelAndView("success");
-//	}
-
-
-	//	@RequestMapping(
-//			value = "/movie",
-//			method = RequestMethod.POST,
-//			produces = MediaType.APPLICATION_JSON_VALUE,
-//			consumes = MediaType.APPLICATION_JSON_VALUE
-//	)
-//	public SimpleMovie submit(@Valid @ModelAttribute("movie")SimpleMovie movie, BindingResult result, Model model) {
-//		log.info("I am in the submit form");
-//		if(result.hasErrors()) {
-////			model.addAttribute("msg", result.getAllErrors().toString());
-//			return null;
-//		}
-//		try {
-//			if (existsInDb(movie)) {
-////				model.addAttribute("error", "This SimpleMovie exists in DB");
-//				log.info("This SimpleMovie exists in DB:  ");
-////				return new ModelAndView("error", "msg", "This SimpleMovie exists in DB");
-//			}
-//			movieDao.save(movie);
-//		} catch (Exception e) {
-////            model.addAttribute("error", e.toString());
-//            log.info("Error when I try to add data into db:  " + e.toString());
-//            return null;
-//        }
-////		model.addAttribute("name", movie.getName());
-////		model.addAttribute("genre", movie.getGenre());
-//        return movie;
-//	}
-
 	@ResponseBody
 	@RequestMapping(
 			value = "/imdbmovie",
@@ -201,5 +154,4 @@ public class MovieController {
 		log.info(movie.toString());
 		return movie;
 	}
-
 }

@@ -19,7 +19,7 @@
 	</definition>
 
 	<!-- SimpleMovie Page -->
-	<definition name="simpleMovie" extends="base-definition">
+	<definition name="movie" extends="base-definition">
 		<put-attribute name="title" value="Movie Form" />
 		<put-attribute name="body" value="/WEB-INF/view/pages/movieForm.jsp" />
 	</definition>

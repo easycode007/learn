@@ -1,8 +1,8 @@
-package com.mov.model;
+package com.mov.dao;
 
+import com.mov.model.Movie;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
 
 @Transactional

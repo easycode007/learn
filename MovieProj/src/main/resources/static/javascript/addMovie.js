@@ -2,7 +2,7 @@ $(document).ready(function() {
 
   $('#addMovieForm').submit(function(event) {
 
-      var name = $('#name').val();
+      var name = $('#title').val();
       var genre = $('#genre').val();
       var json = { "name" : name, "genre" : genre, "discriminator": "simpleMovie"};
 
@@ -17,7 +17,7 @@ $(document).ready(function() {
         },
         success: function(movie) {
             var respContent = "";
-            respContent += "<div class='success'><span>Well done! </span>" + movie.name + "was added.</div>"
+            respContent += "<div class='success'><span>Well done! </span>" + movie.title + "was added.</div>"
             $("#movieAdded").html(respContent);
         }
     });
