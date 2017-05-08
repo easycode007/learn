@@ -2,9 +2,13 @@ $(document).ready(function() {
 
   $('#addMovieForm').submit(function(event) {
 
-      var name = $('#title').val();
+      var title = $('#title').val();
       var genre = $('#genre').val();
-      var json = { "name" : name, "genre" : genre, "discriminator": "simpleMovie"};
+      var json = { "title" : title, "genre" : genre, "discriminator": "simpleMovie"};
+
+
+      console.log(JSON.stringify(json));
+
 
     $.ajax({
         url: $("#addMovieForm").attr("action"),

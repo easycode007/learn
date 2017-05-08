@@ -35,9 +35,9 @@ public class MovieController {
 	@ResponseBody
 	public SimpleMovie addMovie(@RequestBody SimpleMovie simpleMovie) {
 		log.info("I am in addMovie() method !!!!");
-		if(existsInDb(simpleMovie)) {
-			return null;
-		}
+//		if(existsInDb(simpleMovie)) {
+//			return null;
+//		}
 		log.info("----------> MOVIE: " + simpleMovie);
 		movieDao.save(simpleMovie);
 		return simpleMovie;

@@ -1,5 +1,6 @@
 package com.mov.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,6 +14,7 @@ import java.io.Serializable;
 @Entity
 @DiscriminatorValue("simpleMovie")
 @AllArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class SimpleMovie extends Movie {
 	@Override
 	public String toString() {
