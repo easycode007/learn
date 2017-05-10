@@ -4,7 +4,7 @@ $(document).ready(function() {
 
       var title = $('#title').val();
       var genre = $('#genre').val();
-      var json = { "title" : title, "genre" : genre, "discriminator": "simpleMovie"};
+      var json = { "title" : title, "genre" : genre, "discriminator": "simpleMoviee"};
 
 
       console.log(JSON.stringify(json));

@@ -13,6 +13,7 @@ import java.io.Serializable;
 
 @Entity
 @DiscriminatorValue("simpleMovie")
+@Table(name="movies")
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class SimpleMovie extends Movie {

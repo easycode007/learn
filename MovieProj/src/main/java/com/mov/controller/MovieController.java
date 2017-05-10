@@ -87,10 +87,10 @@ public class MovieController {
             method = RequestMethod.GET,
 			produces = MediaType.APPLICATION_JSON_VALUE,
 			consumes = MediaType.APPLICATION_JSON_VALUE)
-	public Movie getAMovie(@PathVariable("id") long id) {
+	public SimpleMovie getAMovie(@PathVariable("id") long id) {
 		log.info("I am in getMovie | Controller");
 		if(movieDao.exists(id)) {
-			Movie simpleMovie = movieDao.findOne(id);
+			SimpleMovie simpleMovie = (SimpleMovie)movieDao.findOne(id);
 			log.info(simpleMovie.toString());
 			return simpleMovie;
 		}
@@ -102,9 +102,9 @@ public class MovieController {
 			method = RequestMethod.PUT,
 			produces = MediaType.APPLICATION_JSON_VALUE,
 			consumes = MediaType.APPLICATION_JSON_VALUE)
-	public Movie editMovie(@RequestBody SimpleMovie simpleMovie) {
+	public SimpleMovie editMovie(@RequestBody SimpleMovie simpleMovie) {
 		log.info("I am in editMovie | Controller");
-		Movie m = movieDao.findOne(simpleMovie.getId());
+		SimpleMovie m = (SimpleMovie)movieDao.findOne(simpleMovie.getId());
 		m.setTitle(simpleMovie.getTitle());
 		m.setGenre(simpleMovie.getGenre());
 		log.info(m);
