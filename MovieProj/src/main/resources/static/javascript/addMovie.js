@@ -4,11 +4,7 @@ $(document).ready(function() {
 
       var title = $('#title').val();
       var genre = $('#genre').val();
-      var json = { "title" : title, "genre" : genre, "discriminator": "simpleMoviee"};
-
-
-      console.log(JSON.stringify(json));
-
+      var json = { "Title" : title, "Genre" : genre};
 
     $.ajax({
         url: $("#addMovieForm").attr("action"),
@@ -20,8 +16,9 @@ $(document).ready(function() {
             xhr.setRequestHeader("Content-Type", "application/json");
         },
         success: function(movie) {
+            console.log("Movie Description: " + movie.Title + " " + movie.Genre + " ");
             var respContent = "";
-            respContent += "<div class='success'><span>Well done! </span>" + movie.title + "was added.</div>"
+            respContent += "<div class='success'><span>Well done! </span>" + movie.Title + " was added.</div>"
             $("#movieAdded").html(respContent);
         }
     });

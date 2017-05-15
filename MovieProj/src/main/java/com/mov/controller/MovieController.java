@@ -131,7 +131,7 @@ public class MovieController {
 			produces = MediaType.APPLICATION_JSON_VALUE,
 			consumes = MediaType.APPLICATION_JSON_VALUE
 	)
-	public Movie addIMDBMovie(@RequestBody Movie movie) {
+	public IMDBMovie addIMDBMovie(@RequestBody IMDBMovie movie) {
 		log.info("Saving imdb movie | controller");
 		log.info("---> MOVIE: " + movie);
 		movieDao.save(movie);
