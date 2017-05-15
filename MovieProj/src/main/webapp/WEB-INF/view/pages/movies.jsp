@@ -6,7 +6,7 @@
     <table id="listMovies" class="table table-bordered">
         <thead>
             <tr>
-                <th>Name</th>
+                <th>Title</th>
                 <th>Genre</th>
                 <th>Option</th>
             </tr>
@@ -14,7 +14,7 @@
         <tbody>
             <c:forEach items="${movieList}" var="movie">
                 <tr>
-                    <td class="movie_name">${movie.name}</td>
+                    <td class="movie_name">${movie.title}</td>
                     <td class="movie_genre">${movie.genre}</td>
                     <td>
                         <a class="btn btn-default" id='DELETE' href="/movie/${movie.id}">DELETE</a>

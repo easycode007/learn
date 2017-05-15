@@ -102,7 +102,7 @@ public class MovieController {
 			method = RequestMethod.PUT,
 			produces = MediaType.APPLICATION_JSON_VALUE,
 			consumes = MediaType.APPLICATION_JSON_VALUE)
-	public SimpleMovie editMovie(@RequestBody SimpleMovie simpleMovie) {
+	public SimpleMovie editSimpleMovie(@RequestBody SimpleMovie simpleMovie) {
 		log.info("I am in editMovie | Controller");
 		SimpleMovie m = (SimpleMovie)movieDao.findOne(simpleMovie.getId());
 		m.setTitle(simpleMovie.getTitle());
@@ -111,6 +111,21 @@ public class MovieController {
 		movieDao.save(m);
 		return simpleMovie;
 	}
+
+/*	@ResponseBody
+	@RequestMapping(value = "/simpleMovie",
+			method = RequestMethod.PUT,
+			produces = MediaType.APPLICATION_JSON_VALUE,
+			consumes = MediaType.APPLICATION_JSON_VALUE)
+	public IMDBMovie editIMDBMovie(@RequestBody IMDBMovie imdbMovie) {
+		log.info("I am in editMovie | Controller");
+		SimpleMovie m = (SimpleMovie)movieDao.findOne(imdbMovie.getId());
+		m.setTitle(imdbMovie.getTitle());
+		m.setGenre(imdbMovie.getGenre());
+		log.info(m);
+		movieDao.save(m);
+		return imdbMovie;
+	}*/
 
 	@RequestMapping(value = "/search", method = RequestMethod.POST)
 	public ModelAndView search(@Valid @ModelAttribute("name")String name, BindingResult result, Model model) {

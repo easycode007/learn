@@ -17,8 +17,8 @@ $(document).ready(function() {
                 var respContent = "";
                 respContent += "<span id='fromResponse'>Movie was deleted: [";
                 respContent += movie.id + " : ";
-                respContent += movie.name + " : " ;
-                respContent += movie.genre + "]</span>";
+                respContent += movie.Title + " : " ;
+                respContent += movie.Genre + "]</span>";
 
                 $("#fromResponse").html(respContent);
                 $("a[href='/movie/" + movie.id + "']").closest('tr').remove()

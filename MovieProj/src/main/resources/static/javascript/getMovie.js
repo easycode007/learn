@@ -11,8 +11,8 @@ $(document).ready(function() {
             },
 
             success: function(movie) {
-                $("#edit_name").val(movie.name);
-                $("#edit_genre").val(movie.genre);
+                $("#edit_name").val(movie.Title);
+                $("#edit_genre").val(movie.Genre);
                 $("#movie_id").val(movie.id);
             }
         });
