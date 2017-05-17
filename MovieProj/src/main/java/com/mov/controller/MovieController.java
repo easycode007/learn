@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 import com.mov.dao.MovieDao;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -63,7 +65,17 @@ public class MovieController {
 	@RequestMapping(value="/movies", method = RequestMethod.GET)
 	public ModelAndView listMovies(Model model) {
 	    List<Movie> movies = (List<Movie>) movieDao.findAll();
-        model.addAttribute("movieList", movies);
+		List<SimpleMovie> simpleMovies = new ArrayList<>();
+		List<IMDBMovie> imdbMovies = new ArrayList<>();
+		for(Movie m : movies) {
+			if(m instanceof SimpleMovie) {
+				simpleMovies.add((SimpleMovie)m);
+			} else {
+				imdbMovies.add((IMDBMovie)m);
+			}
+		}
+        model.addAttribute("simpleMovieList", simpleMovies);
+		model.addAttribute("imdbMovieList", imdbMovies);
 		return new ModelAndView("movies");
 	}
 
@@ -128,13 +140,13 @@ public class MovieController {
 	}*/
 
 	@RequestMapping(value = "/search", method = RequestMethod.POST)
-	public ModelAndView search(@Valid @ModelAttribute("name")String name, BindingResult result, Model model) {
+	public ModelAndView search(@Valid @ModelAttribute("title")String title, BindingResult result, Model model) {
 		log.info("I am in the search method functionality");
 		if(result.hasErrors()) {
 			model.addAttribute("msg", result.getAllErrors().toString());
 			return new ModelAndView("error");
 		}
-		List<Movie> results = movieDao.findByTitle(name);
+		List<Movie> results = movieDao.findByTitle(title);
         model.addAttribute("movieList", results);
 		return new ModelAndView("movies");
 	}

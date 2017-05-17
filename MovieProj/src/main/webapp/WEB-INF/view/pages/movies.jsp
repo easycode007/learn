@@ -12,16 +12,38 @@
             </tr>
         </thead>
         <tbody>
-            <c:forEach items="${movieList}" var="movie">
+            <c:forEach items="${simpleMovieList}" var="simpleMovie">
                 <tr>
-                    <td class="movie_name">${movie.title}</td>
-                    <td class="movie_genre">${movie.genre}</td>
+                    <td class="movie_name">${simpleMovie.title}</td>
+                    <td class="movie_genre">${simpleMovie.genre}</td>
                     <td>
-                        <a class="btn btn-default" id='DELETE' href="/movie/${movie.id}">DELETE</a>
-                        <a class="btn btn-default" id='GET' data-toggle="modal" data-target="#myModal" href="/movie/${movie.id}">EDIT</a>
+                        <a class="btn btn-default" id='DELETE' href="/movie/${simpleMovie.id}">DELETE</a>
+                        <a class="btn btn-default" id='GET' data-toggle="modal" data-target="#myModal" href="/movie/${simpleMovie.id}">EDIT</a>
+                        <a class="btn btn-default" data-toggle="collapse" data-parent="#accordion" href="#collapse-${simpleMovie.id}">Info</a>
+                        <div id="collapse-${simpleMovie.id}" class="panel-collapse collapse">
+                            <br>
+                            <p>  Movie Genre: ${simpleMovie.genre} </p>
+                        </div>
                     </td>
                 </tr>
             </c:forEach>
+            <c:forEach items="${imdbMovieList}" var="imdbMovie">
+                <tr>
+                    <td class="movie_name">${imdbMovie.title}</td>
+                    <td class="movie_genre">${imdbMovie.genre}</td>
+                    <td>
+                        <a class="btn btn-default" id='DELETE' href="/movie/${imdbMovie.id}">DELETE</a>
+                        <a class="btn btn-default" id='GET' data-toggle="modal" data-target="#myModal" href="/movie/${imdbMovie.id}">EDIT</a>
+                        <a class="btn btn-default" data-toggle="collapse" data-parent="#accordion" href="#collapse-${imdbMovie.id}">Info</a>
+                        <div id="collapse-${imdbMovie.id}" class="panel-collapse collapse">
+                            <br>
+                            <p>  Movie plot: ${imdbMovie.plot}</p>
+                        </div>
+                    </td>
+                </tr>
+            </c:forEach>
+
+
         </tbody>
     </table>
 </div>

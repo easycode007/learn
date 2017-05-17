@@ -27,4 +27,5 @@ public abstract class Movie {
 
     @Getter @Setter @JsonProperty("Genre") @Column(name = "genre")
     private String genre; // "Action, Drama, Sci-Fi"
+
 }

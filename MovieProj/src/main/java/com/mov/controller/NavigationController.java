@@ -40,7 +40,7 @@ public class NavigationController {
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
 	public ModelAndView searchAMovie() {
 		log.info("I am in search method()");
-		return new ModelAndView("search", "name", new SimpleMovie()); // name from model name
+		return new ModelAndView("search", "title", new SimpleMovie()); // name from model name
 		// corespunde cu <name> din @ModelAttribute de mai jos din /search method
 	}
 
