@@ -64,19 +64,7 @@ public class MovieController {
 	
 	@RequestMapping(value="/movies", method = RequestMethod.GET)
 	public ModelAndView listMovies(Model model) {
-	    List<Movie> movies = (List<Movie>) movieDao.findAll();
-		List<SimpleMovie> simpleMovies = new ArrayList<>();
-		List<IMDBMovie> imdbMovies = new ArrayList<>();
-		for(Movie m : movies) {
-			if(m instanceof SimpleMovie) {
-				simpleMovies.add((SimpleMovie)m);
-			} else {
-				imdbMovies.add((IMDBMovie)m);
-			}
-		}
-        model.addAttribute("simpleMovieList", simpleMovies);
-		model.addAttribute("imdbMovieList", imdbMovies);
-		return new ModelAndView("movies");
+		return setInfoInView("", model);
 	}
 
 	@ResponseBody
@@ -146,8 +134,27 @@ public class MovieController {
 			model.addAttribute("msg", result.getAllErrors().toString());
 			return new ModelAndView("error");
 		}
-		List<Movie> results = movieDao.findByTitle(title);
-        model.addAttribute("movieList", results);
+		return setInfoInView(title, model);
+	}
+
+	private ModelAndView setInfoInView(String title, Model model) {
+		List<Movie> results;
+		if(title.length() == 0) {
+			results = (List<Movie>) movieDao.findAll();
+		} else {
+			results = movieDao.findByTitle(title);
+		}
+		List<SimpleMovie> simpleMovies = new ArrayList<>();
+		List<IMDBMovie> imdbMovies = new ArrayList<>();
+		for(Movie m : results) {
+			if(m instanceof SimpleMovie) {
+				simpleMovies.add((SimpleMovie)m);
+			} else {
+				imdbMovies.add((IMDBMovie)m);
+			}
+		}
+		model.addAttribute("simpleMovieList", simpleMovies);
+		model.addAttribute("imdbMovieList", imdbMovies);
 		return new ModelAndView("movies");
 	}
 
