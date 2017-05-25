@@ -20,4 +20,10 @@
         <put-attribute name="body" value="/WEB-INF/view/pages/home.jsp" />
     </definition>
 
+    <!-- Home Page -->
+    <definition name="anotherPage" extends="base-definition">
+        <put-attribute name="title" value="AnotherPage" />
+        <put-attribute name="body" value="/WEB-INF/view/pages/anotherPage.jsp" />
+    </definition>
+
 </tiles-definitions>

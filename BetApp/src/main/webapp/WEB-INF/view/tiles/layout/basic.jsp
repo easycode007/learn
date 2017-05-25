@@ -15,23 +15,25 @@
 	</head>
 
 	<body>
-		<header id="header">
-			<tiles:insertAttribute name="header" />
-		</header>
-		<section id="sidemenu">
-			<tiles:insertAttribute name="menu" />
-		</section>
-		<section id="left-side-content">
-            <tiles:insertAttribute name="leftSide" />
-        </section>
-		<section id="site-content">
-			<tiles:insertAttribute name="body" />
-		</section>
-        <section id="right-side-content">
-            <tiles:insertAttribute name="rightSide" />
-        </section>
-		<footer id="footer">
-			<tiles:insertAttribute name="footer" />
-		</footer>
+	    <div class="site-wrapper">
+
+            <div class="site-wrapper-inner">
+
+                <div class="cover-container">
+                    <section id="sidemenu">
+                        <tiles:insertAttribute name="menu" />
+                    </section>
+                    <section id="site-content">
+                        <tiles:insertAttribute name="body" />
+                    </section>
+
+                    <footer id="footer">
+                        <tiles:insertAttribute name="footer" />
+                    </footer>
+                </div>
+
+              </div>
+        </div>
+
 	</body>
 </html>

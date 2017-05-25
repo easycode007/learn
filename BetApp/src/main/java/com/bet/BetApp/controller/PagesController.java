@@ -15,4 +15,9 @@ public class PagesController {
     public ModelAndView homePage(Model model) {
         return new ModelAndView("home");
     }
+
+    @RequestMapping("/anotherPage")
+    public ModelAndView anotherPage(Model model) {
+        return new ModelAndView("anotherPage");
+    }
 }
