@@ -20,4 +20,9 @@ public class PagesController {
     public ModelAndView anotherPage(Model model) {
         return new ModelAndView("anotherPage");
     }
+
+    @RequestMapping("/contact")
+    public ModelAndView contactPage(Model model) {
+        return new ModelAndView("contact");
+    }
 }

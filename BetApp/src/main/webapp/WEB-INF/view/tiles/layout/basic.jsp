@@ -12,6 +12,8 @@
 		<link href="<c:url value='/assets/css/ie10-viewport-bug-workaround.css'/>" rel="stylesheet"/>
 		<link href="<c:url value='/css/cover.css'/>" rel="stylesheet"/>
 		<script src="/assets/js/ie-emulation-modes-warning.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	</head>
 
 	<body>
@@ -20,18 +22,16 @@
             <div class="site-wrapper-inner">
 
                 <div class="cover-container">
-                    <section id="sidemenu">
+                    <div id="header">
                         <tiles:insertAttribute name="menu" />
-                    </section>
-                    <section id="site-content">
+                    </div>
+                    <div id="body">
                         <tiles:insertAttribute name="body" />
-                    </section>
-
-                    <footer id="footer">
+                    </div>
+                    <div id="footer">
                         <tiles:insertAttribute name="footer" />
-                    </footer>
+                    </div>
                 </div>
-
               </div>
         </div>
 

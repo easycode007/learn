@@ -8,10 +8,8 @@
         <put-attribute name="title" value="" />
         <put-attribute name="header" value="/WEB-INF/view/tiles/template/header.jsp" />
         <put-attribute name="menu" value="/WEB-INF/view/tiles/template/menu.jsp" />
-        <put-attribute name="leftSide" value="/WEB-INF/view/tiles/template/leftSide.jsp" />
         <put-attribute name="body" value="" />
         <put-attribute name="footer" value="/WEB-INF/view/tiles/template/footer.jsp" />
-        <put-attribute name="rightSide" value="/WEB-INF/view/tiles/template/rightSide.jsp" />
     </definition>
 
     <!-- Home Page -->
@@ -20,10 +18,14 @@
         <put-attribute name="body" value="/WEB-INF/view/pages/home.jsp" />
     </definition>
 
-    <!-- Home Page -->
+    <!-- another page -->
     <definition name="anotherPage" extends="base-definition">
         <put-attribute name="title" value="AnotherPage" />
         <put-attribute name="body" value="/WEB-INF/view/pages/anotherPage.jsp" />
     </definition>
 
+    <definition name="contact" extends="base-definition">
+        <put-attribute name="title" value="AnotherPage" />
+        <put-attribute name="body" value="/WEB-INF/view/pages/contact.jsp" />
+    </definition>
 </tiles-definitions>
